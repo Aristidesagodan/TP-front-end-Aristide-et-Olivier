@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GourmeTech - Plateforme de recettes culinaires</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigation-styles.css">
 </head>
 <body>
     <header class="header">
@@ -20,10 +21,10 @@
             <!-- Navigation principale -->
             <nav class="main-nav">
                 <ul class="nav-list">
-                    <li><a href="#accueil" class="nav-link">Accueil</a></li>
-                    <li><a href="#recettes" class="nav-link">Recettes</a></li>
-                    <li><a href="#favoris" class="favorites-link" aria-label="Mes favoris">Favoris</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#accueil" class="nav-link" style="--i:1">Accueil</a></li>
+                    <li><a href="#recettes" class="nav-link" style="--i:2">Recettes</a></li>
+                    <li><a href="#favoris" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
+                    <li><a href="#contact" class="nav-link" style="--i:4">Contact</a></li>
                 </ul>
             </nav>
 
@@ -38,6 +39,88 @@
         </div>
     </header>
 
+    <section class="search-filter">
+        <input type="text" placeholder="Rechercher une recette...">
+        <button>Rechercher</button>
+
+        <div class="filters">
+            <div class="filter-block">
+                <h2>Catégorie</h2>
+                <input type="checkbox" name="entree" id="entree"><label for="entree">Entrée</label>
+                <input type="checkbox" name="plat" id="plat"><label for="plat">Plat</label>
+                <input type="checkbox" name="dessert" id="dessert"><label for="dessert"> Dessert</label>
+            </div>
+            <div class="filter-block">
+                <h2>Temps de préparation</h2>
+                <input type="radio" name="temps" value="rapide(&gt;30min)" id="rapide(&gt;30min)"><label for="rapide(&gt;30min)">Rapide(&gt;30 min)</label> 
+                <input type="radio" name="temps" value="moyen (30-60min)" id="moyen (30-60min)"><label for="moyen (30-60min)"> Moyen (30-60 min)</label>
+                <input type="radio" name="temps" value="long (&gt; 60min)" id="long (&gt; 60min)"><label for="long (&gt; 60min)">Long (&gt; 60 min)</label>
+            </div>
+            <div class="filter-block">
+                <h2>Difficulté</h2>
+                <input type="radio" name="difficulte" value="facile" id="facile"><label for="facile">Facile</label>
+                <label><input type="radio" name="difficulte" value="moyen" id="moyen"><label for="moyen">Moyen</label>
+                <label><input type="radio" name="difficulte" value="difficile" id="difficile"><label for="difficile">Difficile</label>
+            </div>
+        </div>
+    </section>
+
+    <section id="recettes" class="recipes" aria-labelledby="recettes-title">
+        <h2 id="recettes-title">Recettes</h2>
+
+       
+            <article class="recipe-card" role="listitem" data-category="entree" data-time="moyen" data-difficulty="moyen">
+                <a href="#" class="recipe-card-link" aria-label="Soupe de potiron, 40 minutes, Moyen">
+                    <figure class="recipe-media">
+                        <img class="recipe-image" src="ajax/veloute-potimarron.jpg" alt="Soupe de potiron" loading="lazy" width="320" height="200">
+                    </figure>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Soupe de potiron</h3>
+                        <ul class="recipe-meta">
+                            <li class="meta-time">⏱️ <time datetime="PT40M">40 min</time></li>
+                            <li class="meta-level">💡 Moyen</li>
+                            <li class="meta-category">🥗 Entrée</li>
+                        </ul>
+                    </div>
+                </a>
+            </article>
+
+          
+
+            <article class="recipe-card" role="listitem" data-category="plat" data-time="moyen" data-difficulty="moyen">
+                <a href="#" class="recipe-card-link" aria-label="Ratatouille, 50 minutes, Moyen">
+                    <figure class="recipe-media">
+                        <img class="recipe-image" src="ajax/la-vraie-ratatouille-nicoise.jpg" alt="Ratatouille" loading="lazy" width="320" height="200">
+                    </figure>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Ratatouille</h3>
+                        <ul class="recipe-meta">
+                            <li class="meta-time">⏱️ <time datetime="PT50M">50 min</time></li>
+                            <li class="meta-level">💡 Moyen</li>
+                            <li class="meta-category">🍽️ Plat</li>
+                        </ul>
+                    </div>
+                </a>
+            </article>
+
+            <article class="recipe-card" role="listitem" data-category="dessert" data-time="moyen" data-difficulty="facile">
+                <a href="#" class="recipe-card-link" aria-label="Tarte aux pommes, 50 minutes, Facile">
+                    <figure class="recipe-media">
+                        <img class="recipe-image" src="ajax/tarte_aux_pommes.jpg" alt="Tarte aux pommes" loading="lazy" width="320" height="200">
+                    </figure>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Tarte aux pommes</h3>
+                        <ul class="recipe-meta">
+                            <li class="meta-time">⏱️ <time datetime="PT50M">50 min</time></li>
+                            <li class="meta-level">💡 Facile</li>
+                            <li class="meta-category">🍰 Dessert</li>
+                        </ul>
+                    </div>
+                </a>
+            </article>
+
+           
+    <script src="navigation.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
