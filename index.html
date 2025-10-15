@@ -6,10 +6,36 @@
     <title>Gourmetech</title>
 </head>
 <body>
-    <header>
 
+       <header class="header">
+        <div class="header-container">
+            <!-- Logo et nom du site -->
+            <div class="logo-section">
+                <div id="accueil" class="logo">
+                    <span class="logo-letter">G</span>
+                </div>
+                <h1 class="site-name">GourmeTech</h1>
+            </div>
+            <!-- Navigation principale -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#accueil" class="nav-link" style="--i:1">Accueil</a></li>
+                    <li><a href="#recettes" class="nav-link" style="--i:2">Recettes</a></li>
+                    <li><a href="#favoris" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
+                    <li><a href="#contact" class="nav-link" style="--i:4">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- Boutons d'action -->
+            <div class="header-actions">
+                <!-- Bouton changement de thème -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <span class="theme-icon">:croissant_de_lune:</span>
+                </button>
+                           </div>
+        </div>
     </header>
-    <section class="search-filter">
+    
+    <section id="recette" class="search-filter">
         <input type="text" placeholder="Rechercher une recette...">
         <button>Rechercher</button>
 
@@ -34,7 +60,77 @@
             </div>
         </div>
     </section>
-
+    
+     <main id="recettes" class="recipes" aria-labelledby="recettes-title">
+        <h2 id="recettes-title">Recettes</h2>
+            <article class="recipe-card" role="listitem" data-category="entree" data-time="moyen" data-difficulty="moyen">
+                <a href="#" class="recipe-card-link" aria-label="Soupe de potiron, 40 minutes, Moyen">
+                    <figure class="recipe-media">
+                        <img class="recipe-image" src="ajax/veloute-potimarron.jpg" alt="Soupe de potiron" loading="lazy" width="320" height="200">
+                    </figure>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Soupe de potiron</h3>
+                        <ul class="recipe-meta">
+                            <li class="meta-time">:chronomètre: <time datetime="PT40M">40 min</time></li>
+                            <li class="meta-level">:ampoule: Moyen</li>
+                            <li class="meta-category">:salade_verte: Entrée</li>
+                        </ul>
+                    </div>
+                </a>
+            </article>
+            <article id="favoris" class="recipe-card" role="listitem" data-category="plat" data-time="moyen" data-difficulty="moyen">
+                <a href="#" class="recipe-card-link" aria-label="Ratatouille, 50 minutes, Moyen">
+                    <figure class="recipe-media">
+                        <img class="recipe-image" src="ajax/la-vraie-ratatouille-nicoise.jpg" alt="Ratatouille" loading="lazy" width="320" height="200">
+                    </figure>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Ratatouille</h3>
+                        <ul class="recipe-meta">
+                            <li class="meta-time">:chronomètre: <time datetime="PT50M">50 min</time></li>
+                            <li class="meta-level">:ampoule: Moyen</li>
+                            <li class="meta-category">:assiette_couteau_fourchette: Plat</li>
+                        </ul>
+                    </div>
+                </a>
+            </article>
+            <article class="recipe-card" role="listitem" data-category="dessert" data-time="moyen" data-difficulty="facile">
+                <a href="#" class="recipe-card-link" aria-label="Tarte aux pommes, 50 minutes, Facile">
+                    <figure class="recipe-media">
+                        <img class="recipe-image" src="ajax/tarte_aux_pommes.jpg" alt="Tarte aux pommes" loading="lazy" width="320" height="200">
+                    </figure>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Tarte aux pommes</h3>
+                        <ul class="recipe-meta">
+                            <li class="meta-time">:chronomètre: <time datetime="PT50M">50 min</time></li>
+                            <li class="meta-level">:ampoule: Facile</li>
+                            <li class="meta-category">:gâteau: Dessert</li>
+                        </ul>
+                    </div>
+                </a>
+            </article>
+    </main>
+    <footer>
+        <div class="footer-links">
+            
+            <div>
+                <h2>Navigation</h2>
+                <a href="#accueil">Accueil</a>
+                <a href="#recette">Ajouter une recette</a>
+                <a href="#favoris">Mes favoris</a>
+                <a href="#apropos">À propos</a>
+            </div>
+            <div>
+                <h2>À propos de GourmeTech</h2>
+                <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d’un projet pédagogique.</p>
+            </div>
+        
+        </div>
+    
+        
+        <p class="copyright">© 2025 GourmeTech - Tous droits réservés</p>
+        
+    
+    </footer>
     
 </body>
 </html>
