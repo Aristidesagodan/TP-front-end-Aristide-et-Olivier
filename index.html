@@ -6,6 +6,35 @@
     <title>Gourmetech</title>
 </head>
 <body>
+    <header>
+
+    </header>
+    <section class="search-filter">
+        <input type="text" placeholder="Rechercher une recette...">
+        <button>Rechercher</button>
+
+        <div class="filters">
+            <div class="filter-block">
+                <h2>Catégorie</h2>
+                <input type="checkbox" name="entree" id="entree"><label for="entree">Entrée</label>
+                <input type="checkbox" name="plat" id="plat"><label for="plat">Plat</label>
+                <input type="checkbox" name="dessert" id="dessert"><label for="dessert"> Dessert</label>
+            </div>
+            <div class="filter-block">
+                <h2>Temps de préparation</h2>
+                <input type="radio" name="temps" value="rapide(&gt;30min)" id="rapide(&gt;30min)"><label for="rapide(&gt;30min)">Rapide(&gt;30 min)</label> 
+                <input type="radio" name="temps" value="moyen (30-60min)" id="moyen (30-60min)"><label for="moyen (30-60min)"> Moyen (30-60 min)</label>
+                <input type="radio" name="temps" value="long (&gt; 60min)" id="long (&gt; 60min)"><label for="long (&gt; 60min)">Long (&gt; 60 min)</label>
+            </div>
+            <div class="filter-block">
+                <h2>Difficulté</h2>
+                <input type="radio" name="difficulte" value="facile" id="facile"><label for="facile">Facile</label>
+                <label><input type="radio" name="difficulte" value="moyen" id="moyen"><label for="moyen">Moyen</label>
+                <label><input type="radio" name="difficulte" value="difficile" id="difficile"><label for="difficile">Difficile</label>
+            </div>
+        </div>
+    </section>
+
     
 </body>
 </html>
