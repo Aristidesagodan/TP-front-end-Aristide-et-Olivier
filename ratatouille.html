@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="navigation-styles.css">
     <link rel="stylesheet" href="recipe-template.css">
+    <script>
+        // Initialisation rapide du thème pour éviter le flash
+        (function() {
+            const savedTheme = localStorage.getItem('gourmetech-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
 </head>
 <body>
     <header class="header">
@@ -251,5 +260,28 @@
 
     <script src="navigation.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Initialisation spécifique de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialisation du thème
+            initializeTheme();
+        });
+    </script>
 </body>
+<footer>
+        <div class="footer-links">
+            <div>
+                <h2>Navigation</h2>
+                <a href="#accueil">Accueil</a>
+                <a href="#recette">Ajouter une recette</a>
+                <a href="#favoris">Mes favoris</a>
+                <a href="#apropos">À propos</a>
+            </div>
+            <div>
+                <h2>À propos de GourmeTech</h2>
+                <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d’un projet pédagogique.</p>
+            </div>
+        </div>
+        <p class="copyright">© 2025 GourmeTech - Tous droits réservés</p>
+    </footer>
 </html>
