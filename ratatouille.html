@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratatouille - GourmeTech</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigation-styles.css">
+    <link rel="stylesheet" href="recipe-template.css">
+    <script>
+        // Initialisation rapide du thème pour éviter le flash
+        (function() {
+            const savedTheme = localStorage.getItem('gourmetech-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo et nom du site -->
+            <div class="logo-section">
+                <div class="logo">
+                    <span class="logo-letter">G</span>
+                </div>
+                <h1 class="site-name">GourmeTech</h1>
+            </div>
+
+            <!-- Navigation principale -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link" style="--i:1">Accueil</a></li>
+                    <li><a href="#recettes" class="nav-link active" style="--i:2">Recettes</a></li>
+                    <li><a href="#favoris" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
+                    <li><a href="#contact" class="nav-link" style="--i:4">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Boutons d'action -->
+            <div class="header-actions">
+                <!-- Bouton changement de thème -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="recipe-detail">
+        <div class="recipe-container">
+            <!-- En-tête de la recette -->
+            <header class="recipe-header">
+                <div class="recipe-hero">
+                    <img src="ajax/la-vraie-ratatouille-nicoise.jpg" alt="Ratatouille" class="recipe-hero-image">
+                    <button class="favorite-btn favorite-btn-large" aria-label="Ajouter aux favoris" data-recipe="ratatouille">
+                        <span class="heart-icon">🤍</span>
+                    </button>
+                </div>
+                <div class="recipe-info">
+                    <h1 class="recipe-title">Ratatouille Niçoise</h1>
+                    <p class="recipe-description">La vraie ratatouille de Nice, un plat traditionnel méditerranéen qui sublime les légumes d'été. Une explosion de saveurs et de couleurs dans votre assiette.</p>
+                    
+                    <div class="recipe-stats">
+                        <div class="stat-item">
+                            <span class="stat-icon">⏱️</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Temps de préparation</span>
+                                <span class="stat-value">50 minutes</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">💡</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Difficulté</span>
+                                <span class="stat-value">Moyen</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">👥</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Portions</span>
+                                <span class="stat-value">6 personnes</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🍽️</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Catégorie</span>
+                                <span class="stat-value">Plat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenu de la recette -->
+            <div class="recipe-content">
+                <!-- Ingrédients -->
+                <section class="recipe-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🛒</span>
+                        Ingrédients
+                    </h2>
+                    <ul class="ingredients-list">
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2</span>
+                            <span class="ingredient-name">aubergines moyennes</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">3</span>
+                            <span class="ingredient-name">courgettes</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2</span>
+                            <span class="ingredient-name">poivrons rouges</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">1</span>
+                            <span class="ingredient-name">poivron jaune</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">4</span>
+                            <span class="ingredient-name">tomates bien mûres</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2</span>
+                            <span class="ingredient-name">oignons</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">4 gousses</span>
+                            <span class="ingredient-name">d'ail</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">6 cuillères à soupe</span>
+                            <span class="ingredient-name">d'huile d'olive extra vierge</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2 branches</span>
+                            <span class="ingredient-name">de thym frais</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2 feuilles</span>
+                            <span class="ingredient-name">de laurier</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">1 bouquet</span>
+                            <span class="ingredient-name">de basilic frais</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">Sel et poivre</span>
+                            <span class="ingredient-name">du moulin</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Instructions -->
+                <section class="recipe-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">👨‍🍳</span>
+                        Instructions
+                    </h2>
+                    <ol class="instructions-list">
+                        <li class="instruction-step">
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <h3>Préparation des légumes</h3>
+                                <p>Lavez tous les légumes. Coupez les aubergines et courgettes en cubes de 2 cm. Épépinez et coupez les poivrons en lanières. Mondez et concassez les tomates.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <h3>Dégorgeage des aubergines</h3>
+                                <p>Placez les cubes d'aubergines dans une passoire, salez généreusement et laissez dégorger 30 minutes. Rincez et séchez avec du papier absorbant.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <h3>Cuisson des oignons</h3>
+                                <p>Dans une grande sauteuse, faites chauffer 2 cuillères à soupe d'huile d'olive. Faites revenir les oignons émincés jusqu'à ce qu'ils soient dorés (environ 10 minutes).</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">4</span>
+                            <div class="step-content">
+                                <h3>Ajout de l'ail et des tomates</h3>
+                                <p>Ajoutez l'ail haché et les tomates concassées. Laissez cuire 10 minutes en remuant régulièrement.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">5</span>
+                            <div class="step-content">
+                                <h3>Cuisson des aubergines</h3>
+                                <p>Dans une autre poêle, faites dorer les aubergines dans 2 cuillères à soupe d'huile d'olive jusqu'à ce qu'elles soient tendres. Réservez.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">6</span>
+                            <div class="step-content">
+                                <h3>Cuisson des courgettes et poivrons</h3>
+                                <p>Dans la même poêle, faites revenir les courgettes puis les poivrons séparément avec le reste d'huile d'olive. Chaque légume doit garder sa texture.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">7</span>
+                            <div class="step-content">
+                                <h3>Assemblage</h3>
+                                <p>Réunissez tous les légumes dans la grande sauteuse avec la base tomate-oignon. Ajoutez le thym, le laurier, salez et poivrez.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">8</span>
+                            <div class="step-content">
+                                <h3>Mijotage final</h3>
+                                <p>Laissez mijoter à feu doux 15-20 minutes sans couvrir, en remuant délicatement. Ajoutez le basilic ciselé en fin de cuisson.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- Conseils -->
+                <section class="recipe-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">💡</span>
+                        Conseils du Chef
+                    </h2>
+                    <div class="tips-container">
+                        <div class="tip-item">
+                            <h4>Secret de la vraie ratatouille</h4>
+                            <p>Cuisez chaque légume séparément pour préserver les saveurs et les textures spécifiques de chacun.</p>
+                        </div>
+                        <div class="tip-item">
+                            <h4>Meilleure saison</h4>
+                            <p>Préparez cette recette en été quand tous les légumes sont à leur apogée de saveur.</p>
+                        </div>
+                        <div class="tip-item">
+                            <h4>Service</h4>
+                            <p>La ratatouille est encore meilleure réchauffée le lendemain. Servez chaud ou tiède avec du riz, des pâtes ou du pain grillé.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Navigation entre recettes -->
+            <nav class="recipe-navigation">
+                <a href="soupe-potiron.html" class="nav-recipe">
+                    <span class="nav-direction">Recette précédente</span>
+                    <span class="nav-title">Soupe de Potiron</span>
+                </a>
+                <a href="tarte-pommes.html" class="nav-recipe">
+                    <span class="nav-direction">Recette suivante</span>
+                    <span class="nav-title">Tarte aux Pommes</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <script src="navigation.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialisation spécifique de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialisation du thème
+            initializeTheme();
+        });
+    </script>
+</body>
+</html>
