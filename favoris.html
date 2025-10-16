@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes favoris - GourmeTech</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="logo">
+        <div class="logo-section">
+                <div id="accueil" class="logo">
+                    <span class="logo-letter">G</span>
+                </div>
+                <h1 class="site-name">GourmeTech</h1>
+            </div>
+      </a>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="index.html#recettes">Ajouter une recette</a>
+        <a href="a-propos.html">À propos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="favoris-container">
+    <h1>Mes recettes favorites</h1>
+
+    <!-- Message affiché si aucun favori -->
+    <p id="message" class="message">Aucun favori enregistré pour le moment</p>
+
+    <!-- Liste des favoris (exemples de base visibles) -->
+    <div id="favoris-list" class="favoris-list">
+      <div class="favori-card">
+        <img src="tarte-aux-pommes.jpg" alt="Tarte aux pommes">
+        <div class="info">
+          <h3>Tarte aux pommes</h3>
+          <p>Dessert</p>
+          <button class="btn-supprimer">🗑️ Supprimer</button>
+        </div>
+      </div>
+
+      <div class="favori-card">
+        <img src="lasagnes.jpg" alt="Lasagnes">
+        <div class="info">
+          <h3>Lasagnes maison</h3>
+          <p>Plat principal</p>
+          <button class="btn-supprimer">🗑️ Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 GourmeTech - Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>
