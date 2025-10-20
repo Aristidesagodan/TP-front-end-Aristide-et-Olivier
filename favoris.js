@@ -1,23 +1,23 @@
 
 // -------------------------------
-// 🧠 Objectif du script :
+//
 // Gérer la liste des recettes favorites grâce à localStorage
 // -------------------------------
 
-// Étape 1️⃣ : Attendre que le DOM soit complètement chargé
+//  j'attends que le DOM soit complètement chargé
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Étape 2️⃣ : Récupérer les éléments du DOM
-  var favorisList = document.getElementById("favoris-list");
-  var message = document.getElementById("message");
+  // je récupère les éléments du DOM
+  let favorisList = document.getElementById("favoris-list");
+  let message = document.getElementById("message");
 
-  // Étape 3️⃣ : Charger les favoris depuis localStorage
-  // Si rien n'est encore stocké, on crée un tableau vide
-  var favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+  //  je Charge les favoris depuis localStorage
+  // Si rien n'est encore stocké, je crée un tableau vide
+  let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
 
-  // Étape 4️⃣ : Fonction pour afficher les favoris à l’écran
+  // Fonction pour afficher les favoris à l’écran
   function afficherFavoris() {
-    // On vide la liste actuelle
+    // je vide la liste actuelle
     favorisList.innerHTML = "";
 
     // Si aucun favori n’est présent, on affiche le message
@@ -30,36 +30,36 @@ document.addEventListener("DOMContentLoaded", function () {
     message.style.display = "none";
 
     // Pour chaque favori du tableau, on crée une carte
-    for (var i = 0; i < favoris.length; i++) {
-      var favori = favoris[i];
+    for (let i = 0; i < favoris.length; i++) {
+      let favori = favoris[i];
 
       // Création de la carte principale
-      var card = document.createElement("div");
+      let card = document.createElement("div");
       card.className = "favori-card";
 
       // Image
-      var image = document.createElement("img");
+      let image = document.createElement("img");
       image.src = favori.image;
       image.alt = favori.nom;
 
       // Informations
-      var infoDiv = document.createElement("div");
+      let infoDiv = document.createElement("div");
       infoDiv.className = "info";
 
       // Titre
-      var titre = document.createElement("h3");
+      let titre = document.createElement("h3");
       titre.textContent = favori.nom;
 
       // Catégorie
-      var categorie = document.createElement("p");
+      let categorie = document.createElement("p");
       categorie.textContent = favori.categorie;
 
       // Bouton de suppression
-      var boutonSupprimer = document.createElement("button");
+      let boutonSupprimer = document.createElement("button");
       boutonSupprimer.className = "btn-supprimer";
       boutonSupprimer.textContent = "🗑️ Supprimer";
 
-      // On ajoute un écouteur sur le bouton pour supprimer le favori
+      //  j'ajoute un écouteur sur le bouton pour supprimer le favori
       boutonSupprimer.addEventListener("click", function (event) {
         supprimerFavori(event);
       });
@@ -76,15 +76,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Étape 5️⃣ : Fonction pour supprimer un favori
+  // Fonction pour supprimer un favori
   function supprimerFavori(event) {
-    // On récupère le nom du favori à partir du titre
-    var card = event.target.closest(".favori-card");
-    var nom = card.querySelector("h3").textContent;
+    // je récupère le nom du favori à partir du titre
+    let card = event.target.closest(".favori-card");
+    let nom = card.querySelector("h3").textContent;
 
     // On filtre le tableau pour retirer ce favori
-    var nouveauxFavoris = [];
-    for (var i = 0; i < favoris.length; i++) {
+    let nouveauxFavoris = [];
+    for (let i = 0; i < favoris.length; i++) {
       if (favoris[i].nom !== nom) {
         nouveauxFavoris.push(favoris[i]);
       }
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
     afficherFavoris();
   }
 
-  // Étape 6️⃣ : Afficher la liste des favoris au chargement
+  //  Afficher la liste des favoris au chargement
   afficherFavoris();
 
 });
