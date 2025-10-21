@@ -1,107 +1,72 @@
-
-// -------------------------------
-//
-// Gérer la liste des recettes favorites grâce à localStorage
-// -------------------------------
-
-//  j'attends que le DOM soit complètement chargé
 document.addEventListener("DOMContentLoaded", function () {
-
-  // je récupère les éléments du DOM
   let favorisList = document.getElementById("favoris-list");
   let message = document.getElementById("message");
 
-  //  je Charge les favoris depuis localStorage
-  // Si rien n'est encore stocké, je crée un tableau vide
-  let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+  // Récupération des favoris dans le localStorage
+  let favoris = JSON.parse(localStorage.getItem("favoris"));
 
-  // Fonction pour afficher les favoris à l’écran
-  function afficherFavoris() {
-    // je vide la liste actuelle
-    favorisList.innerHTML = "";
-
-    // Si aucun favori n’est présent, on affiche le message
-    if (favoris.length === 0) {
-      message.style.display = "block";
-      return;
-    }
-
-    // Sinon, on cache le message
-    message.style.display = "none";
-
-    // Pour chaque favori du tableau, on crée une carte
-    for (let i = 0; i < favoris.length; i++) {
-      let favori = favoris[i];
-
-      // Création de la carte principale
-      let card = document.createElement("div");
-      card.className = "favori-card";
-
-      // Image
-      let image = document.createElement("img");
-      image.src = favori.image;
-      image.alt = favori.nom;
-
-      // Informations
-      let infoDiv = document.createElement("div");
-      infoDiv.className = "info";
-
-      // Titre
-      let titre = document.createElement("h3");
-      titre.textContent = favori.nom;
-
-      // Catégorie
-      let categorie = document.createElement("p");
-      categorie.textContent = favori.categorie;
-
-      // Bouton de suppression
-      let boutonSupprimer = document.createElement("button");
-      boutonSupprimer.className = "btn-supprimer";
-      boutonSupprimer.textContent = "🗑️ Supprimer";
-
-      //  j'ajoute un écouteur sur le bouton pour supprimer le favori
-      boutonSupprimer.addEventListener("click", function (event) {
-        supprimerFavori(event);
-      });
-
-      // Assemblage de la carte
-      infoDiv.appendChild(titre);
-      infoDiv.appendChild(categorie);
-      infoDiv.appendChild(boutonSupprimer);
-      card.appendChild(image);
-      card.appendChild(infoDiv);
-
-      // Ajout de la carte dans la liste
-      favorisList.appendChild(card);
-    }
+  // Si aucun favori n'existe ou si la liste est vide
+  if (!favoris || favoris.length === 0) {
+    message.style.display = "block";
+    favorisList.style.display = "none";
+    return;
   }
 
-  // Fonction pour supprimer un favori
-  function supprimerFavori(event) {
-    // je récupère le nom du favori à partir du titre
-    let card = event.target.closest(".favori-card");
-    let nom = card.querySelector("h3").textContent;
+  // Sinon, je masque le message et j'affiche les favoris
+  message.style.display = "none";
+  favorisList.style.display = "grid";
+  favorisList.innerHTML = "";
 
-    // On filtre le tableau pour retirer ce favori
-    let nouveauxFavoris = [];
-    for (let i = 0; i < favoris.length; i++) {
-      if (favoris[i].nom !== nom) {
-        nouveauxFavoris.push(favoris[i]);
+  // je parcours chaque nom de recette
+  for (let i = 0; i < favoris.length; i++) {
+    let nom = favoris[i];
+
+    // Création de la carte du favori
+    let card = document.createElement("div");
+    card.classList.add("favori-card");
+
+    //  je suppose que l'image a le même nom que la recette en minuscules
+    // et se trouve dans le dossier "assets"
+    let imageNom = nom.toLowerCase().replaceAll(" ", "-") + ".jpg";
+    let imageSrc = "assets/" + imageNom;
+
+    // Structure HTML de la carte
+    card.innerHTML =
+      '<img src="' + imageSrc + '" alt="' + nom + '">' +
+      '<div class="info">' +
+      "<h3>" + nom + "</h3>" +
+      '<button class="btn-supprimer" data-nom="' + nom + '">🗑️ Supprimer</button>' +
+      "</div>";
+
+    favorisList.appendChild(card);
+  }
+
+  // Gestion des boutons Supprimer
+  let boutons = document.getElementsByClassName("btn-supprimer");
+  for (let j = 0; j < boutons.length; j++) {
+    boutons[j].addEventListener("click", function (event) {
+      let nom = event.target.getAttribute("data-nom");
+
+      // Retirer l'élément du tableau
+      let nouveauxFavoris = [];
+      for (let k = 0; k < favoris.length; k++) {
+        if (favoris[k] !== nom) {
+          nouveauxFavoris.push(favoris[k]);
+        }
       }
-    }
 
-    // On remplace l'ancien tableau par le nouveau
-    favoris = nouveauxFavoris;
+      // Mettre à jour le localStorage
+      localStorage.setItem("favoris", JSON.stringify(nouveauxFavoris));
 
-    // On met à jour le localStorage
-    localStorage.setItem("favoris", JSON.stringify(favoris));
+      // Supprimer la carte du DOM
+      let carte = event.target.closest(".favori-card");
+      carte.parentNode.removeChild(carte);
 
-    // On réaffiche la liste mise à jour
-    afficherFavoris();
+      // Si plus aucun favori, j'affiche le message
+      if (nouveauxFavoris.length === 0) {
+        message.style.display = "block";
+        favorisList.style.display = "none";
+      }
+    });
   }
-
-  //  Afficher la liste des favoris au chargement
-  afficherFavoris();
-
 });
-
