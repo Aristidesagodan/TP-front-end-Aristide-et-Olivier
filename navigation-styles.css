@@ -134,6 +134,8 @@
     background: linear-gradient(135deg, #ff6b35, #f7931e);
     color: white;
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    transform: translateY(-1px);
+    font-weight: 700;
 }
 
 .nav-link.active::after {

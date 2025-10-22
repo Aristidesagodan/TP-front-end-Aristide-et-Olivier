@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez GourmeTech, le site qui mêle passion de la cuisine et technologie. Partagez vos recettes et enregistrez vos favoris.">
+  <title>Mes favoris - GourmeTech</title>
+  <link rel="stylesheet" href="favoris.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="logo">
+        <div class="logo-section">
+          <div id="accueil" class="logo">
+            <span class="logo-letter">G</span>
+          </div>
+          <h1 class="site-name">GourmeTech</h1>
+        </div>
+      </a>
+      <nav>
+  <a href="index.html">Accueil</a>
+  <a href="recette.html">Ajouter une recette</a>
+  <a href="a-propos.html">A propos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="favoris-container">
+    <h1>Mes recettes favorites</h1>
+
+    <!-- Message affiché si aucun favori -->
+    <p id="message" class="message">Aucun favori enregistré pour le moment</p>
+
+    <!-- Liste des favoris (exemples de base visibles) -->
+    <div id="favoris-list" class="favoris-list">
+      <div class="favori-card">
+  <img src="ajax/tarte_aux_pommes.jpg" alt="Tarte aux pommes">
+        <div class="info">
+          <h3>Tarte aux pommes</h3>
+          <p>Dessert</p>
+          <button class="btn-supprimer">🗑️ Supprimer</button>
+        </div>
+      </div>
+
+      <div class="favori-card">
+  <img src="ajax/la-vraie-ratatouille-nicoise.jpg" alt="ratatouille">
+        <div class="info">
+          <h3>La-vraie-ratatouille-niçoise</h3>
+          <p>Plat principal</p>
+          <button class="btn-supprimer">🗑️ Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+            
+            <div>
+                <h2>Navigation</h2>
+                <a href="index.html">Accueil</a>
+                <a href="recette.html">Ajouter une recette</a> 
+                <a href="a-propos.html">À propos</a> 
+            </div>
+            <div>
+                <h2>À propos de GourmeTech</h2>
+                <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d’un projet pédagogique.</p>
+            </div>
+        
+    </div>
+    <p>© 2025 GourmeTech - Tous droits réservés | <a class="ml" href="#">Mentions légales</a></p>
+  </footer>
+<script src="favoris.js"></script>
+</body>
+
+</html>
