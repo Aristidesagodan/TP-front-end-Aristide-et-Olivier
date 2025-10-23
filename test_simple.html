@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Générateur Simple</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        button { 
+            padding: 10px 20px; 
+            margin: 10px; 
+            background: #e67e22;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover { background: #d35400; }
+        #categorySelect { 
+            padding: 8px; 
+            margin: 10px; 
+            min-width: 200px;
+        }
+        #result { 
+            margin-top: 20px; 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            border-radius: 5px;
+        }
+        .loading { color: #e67e22; font-style: italic; }
+        .error { color: #e74c3c; }
+        .recipe-img { max-width: 300px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🍽️ Test du Générateur de Recettes GourmeTech</h1>
+    
+    <div>
+        <button onclick="testGenerateRecipe()">🎲 Générer une recette</button>
+        <select id="categorySelect">
+            <option value="">Toutes les catégories</option>
+        </select>
+        <button onclick="testLoadCategories()">📋 Charger les catégories</button>
+    </div>
+    
+    <div id="result">Cliquez sur un bouton pour commencer...</div>
+    
+    <script>
+        // Simples dictionnaires de traduction pour le test
+        const categoryTranslations = {
+            'Beef': 'Bœuf',
+            'Breakfast': 'Petit-déjeuner',
+            'Chicken': 'Poulet',
+            'Dessert': 'Dessert',
+            'Lamb': 'Agneau',
+            'Pasta': 'Pâtes',
+            'Pork': 'Porc',
+            'Seafood': 'Fruits de mer',
+            'Vegetarian': 'Végétarien'
+        };
+        
+        function translateCategory(category) {
+            return categoryTranslations[category] || category;
+        }
+        
+        async function testLoadCategories() {
+            const result = document.getElementById('result');
+            const categorySelect = document.getElementById('categorySelect');
+            
+            result.innerHTML = '<span class="loading">Chargement des catégories...</span>';
+            
+            try {
+                const response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');
+                const data = await response.json();
+                
+                // Vider le select
+                categorySelect.innerHTML = '<option value="">Toutes les catégories</option>';
+                
+                if (data.categories) {
+                    data.categories.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category.strCategory;
+                        option.textContent = translateCategory(category.strCategory);
+                        categorySelect.appendChild(option);
+                    });
+                    
+                    result.innerHTML = `
+                        <h3>✅ Catégories chargées (${data.categories.length}):</h3>
+                        <ul>
+                            ${data.categories.map(cat => `<li>${cat.strCategory} → ${translateCategory(cat.strCategory)}</li>`).join('')}
+                        </ul>
+                    `;
+                } else {
+                    result.innerHTML = '<span class="error">❌ Aucune catégorie trouvée</span>';
+                }
+            } catch (error) {
+                result.innerHTML = `<span class="error">❌ Erreur: ${error.message}</span>`;
+                console.error('Erreur categories:', error);
+            }
+        }
+        
+        async function testGenerateRecipe() {
+            const result = document.getElementById('result');
+            const categorySelect = document.getElementById('categorySelect');
+            const selectedCategory = categorySelect.value;
+            
+            result.innerHTML = '<span class="loading">Génération d\'une recette...</span>';
+            
+            try {
+                let apiUrl = 'https://www.themealdb.com/api/json/v1/1/random.php';
+                
+                if (selectedCategory) {
+                    apiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`;
+                }
+                
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data.meals && data.meals[0]) {
+                    let meal = data.meals[0];
+                    
+                    // Si on a filtré par catégorie, récupérer les détails complets
+                    if (selectedCategory) {
+                        const detailResponse = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
+                        const detailData = await detailResponse.json();
+                        if (detailData.meals) {
+                            meal = detailData.meals[0];
+                        }
+                    }
+                    
+                    // Extraire les ingrédients
+                    const ingredients = [];
+                    for (let i = 1; i <= 20; i++) {
+                        const ingredient = meal[`strIngredient${i}`];
+                        const measure = meal[`strMeasure${i}`];
+                        if (ingredient && ingredient.trim()) {
+                            ingredients.push(`${measure ? measure.trim() : ''} ${ingredient.trim()}`);
+                        }
+                    }
+                    
+                    result.innerHTML = `
+                        <h3>🎉 Recette générée:</h3>
+                        <h4>${meal.strMeal}</h4>
+                        <img src="${meal.strMealThumb}" class="recipe-img" alt="${meal.strMeal}">
+                        <p><strong>Catégorie:</strong> ${translateCategory(meal.strCategory || 'Inconnue')}</p>
+                        <p><strong>Région:</strong> ${meal.strArea || 'Inconnue'}</p>
+                        <h5>Ingrédients:</h5>
+                        <ul>
+                            ${ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                        </ul>
+                        ${meal.strInstructions ? `
+                            <h5>Instructions:</h5>
+                            <p style="text-align: justify;">${meal.strInstructions.substring(0, 300)}...</p>
+                        ` : ''}
+                    `;
+                } else {
+                    result.innerHTML = '<span class="error">❌ Aucune recette trouvée</span>';
+                }
+            } catch (error) {
+                result.innerHTML = `<span class="error">❌ Erreur: ${error.message}</span>`;
+                console.error('Erreur generation:', error);
+            }
+        }
+        
+        // Charger les catégories au démarrage
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page de test chargée');
+            testLoadCategories();
+        });
+    </script>
+</body>
+</html>

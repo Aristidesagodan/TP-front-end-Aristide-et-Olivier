@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GourmeTech - Plateforme de recettes culinaires interactives. Découvrez, recherchez et partagez vos recettes favorites.">
+    <meta name="keywords" content="recettes, cuisine, culinaire, gastronomie, plats, desserts, entrées">
+    <meta name="author" content="GourmeTech">
+    
+    <title>GourmeTech - Plateforme de Recettes Culinaires</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo et nom du site -->
+                <a href="index.html" class="logo" aria-label="Accueil GourmeTech">
+                    <svg class="logo-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40">
+                        <circle cx="32" cy="32" r="30" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                        <defs>
+                            <radialGradient id="circleGradient-index" cx="0.3" cy="0.3" r="0.8">
+                                <stop offset="0%" stop-color="#f39c12" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#c0392b" stop-opacity="0.1"/>
+                            </radialGradient>
+                        </defs>
+                        <circle cx="32" cy="32" r="28" fill="url(#circleGradient-index)"/>
+                        <text x="32" y="38" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="central" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">G</text>
+                    </svg>
+                    <span class="logo-text">GourmeTech</span>
+                </a>
+                
+                <!-- Navigation principale -->
+                <nav class="nav-main" role="navigation" aria-label="Navigation principale">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link active" aria-current="page">Accueil</a></li>
+                        <li><a href="generer.html" class="nav-link">🎲 Découvrir</a></li>
+                        <li><a href="favoris.html" class="nav-link">Mes Favoris <span class="favorites-count" id="favoritesCount">0</span></a></li>
+                        <li><a href="historique.html" class="nav-link">📊 Statistiques</a></li>
+                        <li><a href="a-propos.html" class="nav-link">À propos</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Contrôles du header -->
+                <div class="header-controls">
+                    <!-- Bouton changement de thème -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Changer le thème">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    
+                    <!-- Menu hamburger pour mobile -->
+                    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" role="main">
+        <div class="container">
+            <!-- Section Hero -->
+            <section class="hero" aria-labelledby="hero-title">
+                <h1 id="hero-title" class="hero-title">Découvrez des recettes exceptionnelles</h1>
+                <p class="hero-subtitle">Explorez notre collection de recettes gourmandes et créez vos plats favoris</p>
+                <div class="hero-actions">
+                    <a href="generer.html" class="btn btn-primary">🎲 Découvrir des recettes</a>
+                    <a href="favoris.html" class="btn btn-secondary">💝 Mes favoris</a>
+                    <a href="historique.html" class="btn btn-outline">📊 Mes statistiques</a>
+                </div>
+            </section>
+
+            <!-- Section de recherche et filtres -->
+            <section class="search-section" aria-labelledby="search-title">
+                <h2 id="search-title" class="visually-hidden">Recherche et filtres</h2>
+                
+                <!-- Barre de recherche -->
+                <div class="search-bar">
+                    <label for="searchInput" class="visually-hidden">Rechercher une recette</label>
+                    <input 
+                        type="search" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Rechercher une recette, un ingrédient..."
+                        aria-describedby="search-help"
+                    >
+                    <button class="search-btn" aria-label="Lancer la recherche">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                </div>
+                <div id="search-help" class="search-help">Tapez au moins 2 caractères pour rechercher</div>
+
+                <!-- Filtres -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="categoryFilter" class="filter-label">Catégorie :</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="">Toutes les catégories</option>
+                            <option value="entree">Entrées</option>
+                            <option value="plat">Plats</option>
+                            <option value="dessert">Desserts</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="timeFilter" class="filter-label">Temps de préparation :</label>
+                        <select id="timeFilter" class="filter-select">
+                            <option value="">Tous les temps</option>
+                            <option value="quick">Rapide (- 30 min)</option>
+                            <option value="medium">Moyen (30-60 min)</option>
+                            <option value="long">Long (+ 60 min)</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="difficultyFilter" class="filter-label">Difficulté :</label>
+                        <select id="difficultyFilter" class="filter-select">
+                            <option value="">Tous niveaux</option>
+                            <option value="facile">Facile</option>
+                            <option value="moyen">Moyen</option>
+                            <option value="difficile">Difficile</option>
+                        </select>
+                    </div>
+
+                    <button class="reset-filters" id="resetFilters" aria-label="Réinitialiser tous les filtres">
+                        Réinitialiser
+                    </button>
+                </div>
+            </section>
+
+            <!-- Résultats de recherche -->
+            <section class="results-section" aria-labelledby="results-title">
+                <div class="results-header">
+                    <h2 id="results-title" class="results-title">Nos recettes</h2>
+                    <div class="results-count" id="resultsCount" aria-live="polite">
+                        <span id="resultsNumber">0</span> recette(s) trouvée(s)
+                    </div>
+                </div>
+
+                <!-- Message de chargement -->
+                <div class="loading" id="loading" aria-hidden="true">
+                    <div class="loading-spinner"></div>
+                    <p>Chargement des recettes...</p>
+                </div>
+
+                <!-- Message aucun résultat -->
+                <div class="no-results" id="noResults" aria-hidden="true" role="status">
+                    <p>Aucune recette ne correspond à vos critères de recherche.</p>
+                    <button class="reset-search" onclick="resetAllFilters()">Voir toutes les recettes</button>
+                </div>
+
+                <!-- Grille des recettes -->
+                <div class="recipes-grid" id="recipesGrid" role="region" aria-label="Liste des recettes">
+                    <!-- Les recettes seront ajoutées dynamiquement ici -->
+                </div>
+
+                <!-- Pagination -->
+                <nav class="pagination" id="pagination" aria-label="Navigation des pages" style="display: none;">
+                    <button class="pagination-btn" id="prevPage" aria-label="Page précédente">‹ Précédent</button>
+                    <div class="pagination-numbers" id="paginationNumbers"></div>
+                    <button class="pagination-btn" id="nextPage" aria-label="Page suivante">Suivant ›</button>
+                </nav>
+            </section>
+        </div>
+    </main>
+
+    <!-- Container pour les notifications -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">GourmeTech</h3>
+                    <p class="footer-description">
+                        Votre plateforme de recettes culinaires interactive. 
+                        Découvrez, cuisinez et partagez vos créations.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="favoris.html">Mes Favoris</a></li>
+                        <li><a href="a-propos.html">À propos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Catégories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="filterByCategory('entree')">Entrées</a></li>
+                        <li><a href="#" onclick="filterByCategory('plat')">Plats</a></li>
+                        <li><a href="#" onclick="filterByCategory('dessert')">Desserts</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="a-propos.html#contact">Nous contacter</a></li>
+                        <li><a href="a-propos.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 GourmeTech. Tous droits réservés. 
+                    Développé avec ❤️ pour les passionnés de cuisine.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

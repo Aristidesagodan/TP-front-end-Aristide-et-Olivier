@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Cercle orange de fond -->
+  <circle cx="32" cy="32" r="30" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+  
+  <!-- Ombre interne pour l'effet 3D -->
+  <defs>
+    <radialGradient id="circleGradient" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#f39c12" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#c0392b" stop-opacity="0.1"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Gradient sur le cercle -->
+  <circle cx="32" cy="32" r="28" fill="url(#circleGradient)"/>
+  
+  <!-- Lettre G blanche - Centré parfaitement -->
+  <text x="32" y="38" 
+        font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif" 
+        font-size="32" 
+        font-weight="bold" 
+        fill="white" 
+        text-anchor="middle" 
+        dominant-baseline="central"
+        style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">G</text>
+</svg>

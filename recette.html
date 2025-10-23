@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Détail de la recette - GourmeTech">
+    <meta name="keywords" content="recette, cuisine, culinaire, ingrédients, préparation">
+    
+    <title id="pageTitle">Recette - GourmeTech</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo et nom du site -->
+                <a href="index.html" class="logo" aria-label="Accueil GourmeTech">
+                    <svg class="logo-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40">
+                        <circle cx="32" cy="32" r="30" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                        <defs>
+                            <radialGradient id="circleGradient-recette" cx="0.3" cy="0.3" r="0.8">
+                                <stop offset="0%" stop-color="#f39c12" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#c0392b" stop-opacity="0.1"/>
+                            </radialGradient>
+                        </defs>
+                        <circle cx="32" cy="32" r="28" fill="url(#circleGradient-recette)"/>
+                        <text x="32" y="38" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="central" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">G</text>
+                    </svg>
+                    <span class="logo-text">GourmeTech</span>
+                </a>
+                
+                <!-- Navigation principale -->
+                <nav class="nav-main" role="navigation" aria-label="Navigation principale">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Accueil</a></li>
+                        <li><a href="generer.html" class="nav-link">🎲 Découvrir</a></li>
+                        <li><a href="favoris.html" class="nav-link">Mes Favoris <span class="favorites-count" id="favoritesCount">0</span></a></li>
+                        <li><a href="historique.html" class="nav-link">📊 Statistiques</a></li>
+                        <li><a href="a-propos.html" class="nav-link">À propos</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Contrôles du header -->
+                <div class="header-controls">
+                    <!-- Bouton changement de thème -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Changer le thème">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    
+                    <!-- Menu hamburger pour mobile -->
+                    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main recipe-main" role="main">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+                <ol class="breadcrumb-list">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><span id="recipeBreadcrumb" aria-current="page">Recette</span></li>
+                </ol>
+            </nav>
+
+            <!-- Message de chargement -->
+            <div class="loading recipe-loading" id="recipeLoading">
+                <div class="loading-spinner"></div>
+                <p>Chargement de la recette...</p>
+            </div>
+
+            <!-- Message d'erreur -->
+            <div class="error-message" id="errorMessage" style="display: none;" role="alert">
+                <h2>Recette introuvable</h2>
+                <p>La recette que vous recherchez n'existe pas ou a été supprimée.</p>
+                <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
+            </div>
+
+            <!-- Contenu de la recette -->
+            <article class="recipe-detail" id="recipeDetail" style="display: none;">
+                <!-- Header de la recette -->
+                <header class="recipe-header">
+                    <div class="recipe-image-container">
+                        <img id="recipeImage" src="" alt="" class="recipe-image">
+                        <button class="favorite-btn recipe-favorite" id="recipeFavoriteBtn" aria-label="Ajouter aux favoris" title="Ajouter aux favoris">
+                            <span class="favorite-icon">♡</span>
+                        </button>
+                    </div>
+
+                    <div class="recipe-info">
+                        <h1 id="recipeTitle" class="recipe-title"></h1>
+                        
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <span class="meta-icon">🏷️</span>
+                                <span class="meta-label">Catégorie :</span>
+                                <span id="recipeCategory" class="meta-value"></span>
+                            </div>
+                            
+                            <div class="meta-item">
+                                <span class="meta-icon">⏱️</span>
+                                <span class="meta-label">Temps :</span>
+                                <span id="recipeTime" class="meta-value"></span>
+                            </div>
+                            
+                            <div class="meta-item">
+                                <span class="meta-icon">📊</span>
+                                <span class="meta-label">Difficulté :</span>
+                                <span id="recipeDifficulty" class="meta-value"></span>
+                            </div>
+                            
+                            <div class="meta-item">
+                                <span class="meta-icon">👥</span>
+                                <span class="meta-label">Portions :</span>
+                                <span id="recipeServings" class="meta-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="recipe-description">
+                            <p id="recipeDescription"></p>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Corps de la recette -->
+                <div class="recipe-body">
+                    <!-- Section ingrédients -->
+                    <section class="recipe-section ingredients-section" aria-labelledby="ingredients-title">
+                        <h2 id="ingredients-title" class="section-title">
+                            <span class="title-icon">🥘</span>
+                            Ingrédients
+                        </h2>
+                        
+                        <div class="servings-adjuster">
+                            <label for="servingsInput">Portions :</label>
+                            <div class="servings-controls">
+                                <button class="servings-btn" onclick="adjustServings(-1)" aria-label="Diminuer les portions">-</button>
+                                <input type="number" id="servingsInput" value="4" min="1" max="20" aria-label="Nombre de portions">
+                                <button class="servings-btn" onclick="adjustServings(1)" aria-label="Augmenter les portions">+</button>
+                            </div>
+                        </div>
+
+                        <ul id="ingredientsList" class="ingredients-list" role="list">
+                            <!-- Les ingrédients seront ajoutés dynamiquement -->
+                        </ul>
+                    </section>
+
+                    <!-- Section instructions -->
+                    <section class="recipe-section instructions-section" aria-labelledby="instructions-title">
+                        <h2 id="instructions-title" class="section-title">
+                            <span class="title-icon">📝</span>
+                            Instructions
+                        </h2>
+
+                        <ol id="instructionsList" class="instructions-list" role="list">
+                            <!-- Les instructions seront ajoutées dynamiquement -->
+                        </ol>
+                    </section>
+                </div>
+
+                <!-- Actions de la recette -->
+                <div class="recipe-actions">
+                    <button class="btn btn-secondary" onclick="window.print()" aria-label="Imprimer la recette">
+                        <span class="btn-icon">🖨️</span>
+                        Imprimer
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="shareRecipe()" aria-label="Partager la recette">
+                        <span class="btn-icon">📤</span>
+                        Partager
+                    </button>
+                    
+                    <a href="index.html" class="btn btn-primary">
+                        <span class="btn-icon">🏠</span>
+                        Retour aux recettes
+                    </a>
+                </div>
+            </article>
+
+            <!-- Suggestions de recettes similaires -->
+            <section class="suggestions-section" id="suggestionsSection" style="display: none;" aria-labelledby="suggestions-title">
+                <h2 id="suggestions-title" class="section-title">Recettes similaires</h2>
+                <div class="suggestions-grid" id="suggestionsGrid">
+                    <!-- Les suggestions seront ajoutées dynamiquement -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Container pour les notifications -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">GourmeTech</h3>
+                    <p class="footer-description">
+                        Votre plateforme de recettes culinaires interactive. 
+                        Découvrez, cuisinez et partagez vos créations.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="favoris.html">Mes Favoris</a></li>
+                        <li><a href="a-propos.html">À propos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Catégories</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#entree">Entrées</a></li>
+                        <li><a href="index.html#plat">Plats</a></li>
+                        <li><a href="index.html#dessert">Desserts</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="a-propos.html#contact">Nous contacter</a></li>
+                        <li><a href="a-propos.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 GourmeTech. Tous droits réservés. 
+                    Développé avec ❤️ pour les passionnés de cuisine.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/scripts.js"></script>
+    <script>
+        // Initialiser la page de recette au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            initRecipePage();
+        });
+    </script>
+</body>
+</html>

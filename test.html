@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test GourmeTech - Validation JavaScript</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .test-section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .test-title {
+            color: #2c3e50;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #c0392b;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+                <circle cx="32" cy="32" r="30" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                <defs>
+                    <radialGradient id="circleGradient-test" cx="0.3" cy="0.3" r="0.8">
+                        <stop offset="0%" stop-color="#f39c12" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#c0392b" stop-opacity="0.1"/>
+                    </radialGradient>
+                </defs>
+                <circle cx="32" cy="32" r="28" fill="url(#circleGradient-test)"/>
+                <text x="32" y="38" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="central" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">G</text>
+            </svg>
+            <div>
+                <h1 style="margin: 0;">🍽️ Test GourmeTech - Validation JavaScript</h1>
+                <p style="margin: 5px 0 0 0;">Page de test pour valider les fonctionnalités JavaScript de l'application GourmeTech</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats">
+        <div class="stat-card">
+            <span class="stat-number" id="recipeCount">0</span>
+            <span>Recettes chargées</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number" id="favoriteCount">0</span>
+            <span>Favoris</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number" id="themeStatus">-</span>
+            <span>Thème actuel</span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2 class="test-title">🔧 Tests des fonctionnalités principales</h2>
+        
+        <button onclick="testRecipeData()">Test des données de recettes</button>
+        <button onclick="testFavorites()">Test du système de favoris</button>
+        <button onclick="testFilters()">Test des filtres</button>
+        <button onclick="testThemes()">Test des thèmes</button>
+        <button onclick="testUtils()">Test des utilitaires</button>
+        <button onclick="runAllTests()">Lancer tous les tests</button>
+        
+        <div id="testResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2 class="test-title">🎯 Test de recherche en temps réel</h2>
+        
+        <input type="text" id="testSearch" placeholder="Tapez pour rechercher..." style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px;">
+        
+        <div id="searchResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2 class="test-title">💾 Test LocalStorage</h2>
+        
+        <button onclick="testLocalStorage()">Tester LocalStorage</button>
+        <button onclick="clearLocalStorage()">Effacer LocalStorage</button>
+        
+        <div id="storageResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2 class="test-title">📱 Simulation d'interface</h2>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3>Recettes simulées :</h3>
+            <div id="recipeCards" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- Inclusion du script principal -->
+    <script src="js/scripts.js"></script>
+
+    <!-- Script de test -->
+    <script>
+        let testResults = [];
+        
+        // Attendre que le DOM soit chargé
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            setupSearchTest();
+            displaySampleRecipes();
+        });
+        
+        function addTestResult(testName, success, message) {
+            testResults.push({ testName, success, message });
+            
+            const resultsDiv = document.getElementById('testResults');
+            const resultElement = document.createElement('div');
+            resultElement.className = `test-result ${success ? 'success' : 'error'}`;
+            resultElement.innerHTML = `
+                <strong>${testName}:</strong> ${success ? '✅ PASS' : '❌ FAIL'} - ${message}
+            `;
+            
+            resultsDiv.appendChild(resultElement);
+        }
+        
+        function testRecipeData() {
+            document.getElementById('testResults').innerHTML = '';
+            
+            try {
+                // Test de l'existence des données
+                if (typeof RECIPES_DATA === 'undefined') {
+                    addTestResult('Données des recettes', false, 'RECIPES_DATA non défini');
+                    return;
+                }
+                
+                addTestResult('Données des recettes', true, `${RECIPES_DATA.length} recettes chargées`);
+                
+                // Test de la structure des données
+                const firstRecipe = RECIPES_DATA[0];
+                if (firstRecipe && firstRecipe.id && firstRecipe.title && firstRecipe.ingredients) {
+                    addTestResult('Structure des recettes', true, 'Structure valide détectée');
+                } else {
+                    addTestResult('Structure des recettes', false, 'Structure invalide');
+                }
+                
+                // Test des catégories
+                const categories = [...new Set(RECIPES_DATA.map(r => r.category))];
+                addTestResult('Catégories', true, `${categories.length} catégories: ${categories.join(', ')}`);
+                
+            } catch (error) {
+                addTestResult('Données des recettes', false, error.message);
+            }
+        }
+        
+        function testFavorites() {
+            try {
+                // Test des fonctions de favoris
+                const initialFavorites = getFavorites();
+                addTestResult('Lecture des favoris', true, `${initialFavorites.length} favoris actuels`);
+                
+                // Test d'ajout/suppression
+                toggleFavorite(1);
+                const afterToggle = getFavorites();
+                
+                if (afterToggle.length !== initialFavorites.length) {
+                    addTestResult('Toggle favoris', true, 'Favori ajouté/supprimé avec succès');
+                } else {
+                    addTestResult('Toggle favoris', false, 'Aucun changement détecté');
+                }
+                
+                // Remettre l'état initial
+                toggleFavorite(1);
+                
+            } catch (error) {
+                addTestResult('Système de favoris', false, error.message);
+            }
+        }
+        
+        function testFilters() {
+            try {
+                // Test des fonctions de filtrage
+                if (typeof applyFilters === 'function') {
+                    addTestResult('Fonction de filtrage', true, 'applyFilters disponible');
+                } else {
+                    addTestResult('Fonction de filtrage', false, 'applyFilters non trouvée');
+                }
+                
+                // Test des utilitaires de formatage
+                const timeText = getTimeText(45);
+                const difficultyText = getDifficultyText('facile');
+                const categoryText = getCategoryText('plat');
+                
+                addTestResult('Formatage temps', true, `45 min → ${timeText}`);
+                addTestResult('Formatage difficulté', true, `facile → ${difficultyText}`);
+                addTestResult('Formatage catégorie', true, `plat → ${categoryText}`);
+                
+            } catch (error) {
+                addTestResult('Système de filtres', false, error.message);
+            }
+        }
+        
+        function testThemes() {
+            try {
+                const currentTheme = document.body.getAttribute('data-theme') || 'light';
+                addTestResult('Thème actuel', true, `Thème: ${currentTheme}`);
+                
+                // Test de changement de thème
+                toggleTheme();
+                const newTheme = document.body.getAttribute('data-theme');
+                
+                if (newTheme !== currentTheme) {
+                    addTestResult('Changement de thème', true, `${currentTheme} → ${newTheme}`);
+                } else {
+                    addTestResult('Changement de thème', false, 'Aucun changement détecté');
+                }
+                
+                // Remettre le thème original
+                toggleTheme();
+                
+            } catch (error) {
+                addTestResult('Système de thèmes', false, error.message);
+            }
+        }
+        
+        function testUtils() {
+            try {
+                // Test de la fonction toast
+                if (typeof showToast === 'function') {
+                    showToast('Test de notification réussi!', 'success');
+                    addTestResult('Notifications toast', true, 'Fonction showToast disponible');
+                } else {
+                    addTestResult('Notifications toast', false, 'showToast non trouvée');
+                }
+                
+                // Test de la détection de page
+                const currentPage = getCurrentPage();
+                addTestResult('Détection de page', true, `Page actuelle: ${currentPage}`);
+                
+            } catch (error) {
+                addTestResult('Fonctions utilitaires', false, error.message);
+            }
+        }
+        
+        function runAllTests() {
+            document.getElementById('testResults').innerHTML = '';
+            testResults = [];
+            
+            addTestResult('🚀 Tests démarrés', true, 'Lancement de tous les tests...');
+            
+            setTimeout(() => testRecipeData(), 100);
+            setTimeout(() => testFavorites(), 200);
+            setTimeout(() => testFilters(), 300);
+            setTimeout(() => testThemes(), 400);
+            setTimeout(() => testUtils(), 500);
+            
+            setTimeout(() => {
+                const passed = testResults.filter(t => t.success).length;
+                const total = testResults.length;
+                addTestResult('📊 Résumé final', true, `${passed}/${total} tests réussis`);
+                updateStats();
+            }, 1000);
+        }
+        
+        function updateStats() {
+            try {
+                document.getElementById('recipeCount').textContent = RECIPES_DATA ? RECIPES_DATA.length : '0';
+                document.getElementById('favoriteCount').textContent = getFavorites ? getFavorites().length : '0';
+                document.getElementById('themeStatus').textContent = document.body.getAttribute('data-theme') || 'light';
+            } catch (error) {
+                console.error('Erreur mise à jour stats:', error);
+            }
+        }
+        
+        function setupSearchTest() {
+            const searchInput = document.getElementById('testSearch');
+            const resultsDiv = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                
+                if (query.length === 0) {
+                    resultsDiv.innerHTML = '<div class="info">Tapez pour rechercher...</div>';
+                    return;
+                }
+                
+                try {
+                    const filteredRecipes = RECIPES_DATA.filter(recipe => 
+                        recipe.title.toLowerCase().includes(query) ||
+                        recipe.description.toLowerCase().includes(query)
+                    );
+                    
+                    if (filteredRecipes.length === 0) {
+                        resultsDiv.innerHTML = '<div class="error">Aucune recette trouvée</div>';
+                    } else {
+                        resultsDiv.innerHTML = `
+                            <div class="success">
+                                ${filteredRecipes.length} recette(s) trouvée(s): 
+                                ${filteredRecipes.map(r => r.title).join(', ')}
+                            </div>
+                        `;
+                    }
+                } catch (error) {
+                    resultsDiv.innerHTML = `<div class="error">Erreur: ${error.message}</div>`;
+                }
+            });
+        }
+        
+        function testLocalStorage() {
+            const storageDiv = document.getElementById('storageResults');
+            
+            try {
+                // Test d'écriture
+                const testData = { test: true, timestamp: Date.now() };
+                localStorage.setItem('gourmetech_test', JSON.stringify(testData));
+                
+                // Test de lecture
+                const retrieved = JSON.parse(localStorage.getItem('gourmetech_test'));
+                
+                if (retrieved && retrieved.test === true) {
+                    storageDiv.innerHTML = '<div class="success">✅ LocalStorage fonctionne correctement</div>';
+                } else {
+                    storageDiv.innerHTML = '<div class="error">❌ Erreur de lecture LocalStorage</div>';
+                }
+                
+                // Afficher les données existantes
+                const favorites = localStorage.getItem('gourmetech_favorites');
+                const theme = localStorage.getItem('gourmetech_theme');
+                
+                storageDiv.innerHTML += `
+                    <div class="info">
+                        <strong>Données stockées:</strong><br>
+                        - Favoris: ${favorites || 'aucun'}<br>
+                        - Thème: ${theme || 'par défaut'}
+                    </div>
+                `;
+                
+            } catch (error) {
+                storageDiv.innerHTML = `<div class="error">❌ LocalStorage non disponible: ${error.message}</div>`;
+            }
+        }
+        
+        function clearLocalStorage() {
+            try {
+                localStorage.removeItem('gourmetech_favorites');
+                localStorage.removeItem('gourmetech_theme');
+                localStorage.removeItem('gourmetech_test');
+                
+                document.getElementById('storageResults').innerHTML = '<div class="success">✅ LocalStorage effacé</div>';
+                updateStats();
+            } catch (error) {
+                document.getElementById('storageResults').innerHTML = `<div class="error">❌ Erreur: ${error.message}</div>`;
+            }
+        }
+        
+        function displaySampleRecipes() {
+            try {
+                if (!RECIPES_DATA || RECIPES_DATA.length === 0) {
+                    document.getElementById('recipeCards').innerHTML = '<div class="error">Aucune recette disponible</div>';
+                    return;
+                }
+                
+                const sampleRecipes = RECIPES_DATA.slice(0, 3);
+                const cardsHTML = sampleRecipes.map(recipe => `
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <h4 style="margin: 0 0 10px 0; color: #2c3e50;">${recipe.title}</h4>
+                        <p style="margin: 0 0 10px 0; font-size: 0.9em; color: #666;">${recipe.description.slice(0, 100)}...</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="background: #e74c3c; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em;">
+                                ${getCategoryText(recipe.category)}
+                            </span>
+                            <button onclick="toggleFavorite(${recipe.id}); updateStats();" style="background: #3498db; padding: 5px 10px; font-size: 0.8em;">
+                                ❤️ Favoris
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                document.getElementById('recipeCards').innerHTML = cardsHTML;
+            } catch (error) {
+                document.getElementById('recipeCards').innerHTML = `<div class="error">Erreur: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
