@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GourmeTech — Générateur de recettes</title>
+  <link rel="stylesheet" href="generer.css" />
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="logo">
+        <div class="logo-section">
+          <div id="accueil" class="logo">
+            <span class="logo-letter">G</span>
+          </div>
+          <h1 class="site-name">GourmeTech</h1>
+        </div>
+      </a>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="a-propos.html">A propos</a>
+        <a href="recette.html">Ajouter une recette</a>
+        <a href="favoris.html">Mes favoris</a>
+      </nav>
+    </div>
+    <p class="gt-subtitle">Découvre une recette aléatoire en un clic</p>
+  </header>
+
+  <main id="main" class="gt-main" role="main">
+    <section aria-labelledby="generator-title" class="gt-generator">
+      <h2 id="generator-title" class="sr-only">Générateur de recette</h2>
+
+      <div class="gt-controls">
+        <button id="generateBtn" class="btn btn-primary" aria-label="Générer une recette">
+          Générer une recette
+        </button>
+
+        <button id="saveBtn" class="btn btn-outline" aria-label="Ajouter la recette aux favoris" disabled>
+          Ajouter aux favoris
+        </button>
+
+        <button id="shareBtn" class="btn btn-outline" aria-label="Partager la recette" disabled>🔗 Partager</button>
+        <button id="pdfBtn" class="btn btn-outline" aria-label="Exporter en PDF" disabled>📄 PDF</button>
+
+        <div id="status" aria-live="polite" class="gt-status" aria-atomic="true"></div>
+      </div>
+
+      <div id="loader" class="gt-loader" aria-hidden="true" hidden>
+        <div class="spinner" role="status" aria-hidden="true"></div>
+        <span class="loader-text">Chargement...</span>
+      </div>
+
+      <article id="recipeContainer" class="gt-recipe" aria-live="polite"></article>
+
+    </section>
+
+    <aside class="gt-favs" aria-labelledby="favs-title">
+      <h3 id="favs-title">Favoris</h3>
+      <ul id="favsList" class="gt-favs-list"></ul>
+      <button id="clearFavsBtn" class="btn btn-link" aria-label="Supprimer tous les favoris">
+        Supprimer tous les favoris
+      </button>
+    </aside>
+  </main>
+
+  <footer class="gt-footer">
+    <div class="footer-links">
+            
+            <div>
+                <h2>Navigation</h2>
+                <a href="index.html">Accueil</a>
+                <a href="a-propos.html">À propos</a>
+            </div>
+            <div>
+                <h2>À propos de GourmeTech</h2>
+                <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d’un projet pédagogique.</p>
+            </div>
+        
+    </div>
+    <p>© 2025 GourmeTech - Tous droits réservés | <a class="ml" href="#">Mentions légales</a></p>
+    <small>API utilisée : TheMealDB — <a class="doc" href="https://www.themealdb.com/api.php" target="_blank" rel="noopener noreferrer">documentation</a></small>
+  </footer>
+
+  <script src="generer.js" defer></script>
+</body>
+</html>
