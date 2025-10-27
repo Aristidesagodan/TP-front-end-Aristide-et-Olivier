@@ -263,6 +263,31 @@ function initializeTheme() {
             themeIcon.textContent = '🌙';
         }
     }
+    
+    // Support pour la page À propos
+    updateAboutPageTheme(savedTheme);
+}
+
+// Support thème pour la page À propos
+function updateAboutPageTheme(theme) {
+    const aboutContainer = document.querySelector('.about-container');
+    if (aboutContainer) {
+        aboutContainer.setAttribute('data-theme', theme || 'light');
+    }
+    
+    // Mettre à jour les variables CSS pour la page À propos
+    const root = document.documentElement;
+    if (theme === 'dark') {
+        root.style.setProperty('--about-bg', '#1a1a1a');
+        root.style.setProperty('--about-card-bg', '#2d2d2d');
+        root.style.setProperty('--about-text', '#ffffff');
+        root.style.setProperty('--about-text-secondary', '#cccccc');
+    } else {
+        root.style.setProperty('--about-bg', '#ffffff');
+        root.style.setProperty('--about-card-bg', '#ffffff');
+        root.style.setProperty('--about-text', '#333333');
+        root.style.setProperty('--about-text-secondary', '#666666');
+    }
 }
 
 function toggleTheme() {
@@ -278,6 +303,9 @@ function toggleTheme() {
     if (themeIcon) {
         themeIcon.textContent = isDark ? '☀️' : '🌙';
     }
+    
+    // Mettre à jour le thème pour la page À propos
+    updateAboutPageTheme(isDark ? 'dark' : 'light');
 }
 
 // Fonctionnalités du footer
@@ -397,6 +425,168 @@ function showNotification(message, type = 'info') {
             }
         }, 300);
     }, 3000);
+}
+
+// ============================================
+// FONCTIONNALITÉ RECETTE ALÉATOIRE
+// ============================================
+
+// Base de données des recettes disponibles
+const availableRecipes = [
+    {
+        id: 'soupe-potiron',
+        name: 'Soupe de potiron',
+        url: 'soupe-potiron.html',
+        category: 'Entrée',
+        time: '40 min',
+        difficulty: 'Moyen'
+    },
+    {
+        id: 'ratatouille',
+        name: 'Ratatouille',
+        url: 'ratatouille.html',
+        category: 'Plat',
+        time: '50 min',
+        difficulty: 'Moyen'
+    },
+    {
+        id: 'tarte-pommes',
+        name: 'Tarte aux pommes',
+        url: 'tarte-pommes.html',
+        category: 'Dessert',
+        time: '60 min',
+        difficulty: 'Facile'
+    }
+];
+
+// Initialisation de la fonctionnalité recette aléatoire
+function initializeRandomRecipe() {
+    const randomButton = document.getElementById('randomRecipeBtn');
+    
+    if (randomButton) {
+        randomButton.addEventListener('click', function() {
+            generateRandomRecipe();
+        });
+    }
+}
+
+// Génération d'une recette aléatoire
+function generateRandomRecipe() {
+    const randomButton = document.getElementById('randomRecipeBtn');
+    const randomIcon = randomButton.querySelector('.random-icon');
+    const randomText = randomButton.querySelector('.random-text');
+    
+    // Animation du bouton
+    randomButton.style.transform = 'scale(0.95)';
+    randomIcon.style.animation = 'spin 0.5s ease-in-out';
+    
+    // Ajout de l'animation de rotation
+    if (!document.querySelector('#random-animations')) {
+        const style = document.createElement('style');
+        style.id = 'random-animations';
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Changement temporaire du texte
+    randomText.textContent = 'Préparation...';
+    randomButton.disabled = true;
+    
+    setTimeout(() => {
+        // Sélection aléatoire d'une recette
+        const randomIndex = Math.floor(Math.random() * availableRecipes.length);
+        const selectedRecipe = availableRecipes[randomIndex];
+        
+        // Affichage de la notification
+        showRandomRecipeNotification(selectedRecipe);
+        
+        // Redirection après 2 secondes
+        setTimeout(() => {
+            window.location.href = selectedRecipe.url;
+        }, 2000);
+        
+        // Réinitialisation du bouton
+        randomButton.style.transform = 'scale(1)';
+        randomIcon.style.animation = 'bounce 2s infinite';
+        randomText.textContent = 'Recette surprise';
+        randomButton.disabled = false;
+        
+    }, 1000);
+}
+
+// Affichage de la notification de recette aléatoire
+function showRandomRecipeNotification(recipe) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #8e44ad, #9b59b6);
+        color: white;
+        padding: 25px 30px;
+        border-radius: 15px;
+        z-index: 1000;
+        font-weight: 500;
+        box-shadow: 0 10px 30px rgba(142, 68, 173, 0.4);
+        text-align: center;
+        min-width: 300px;
+        animation: fadeInScale 0.5s ease;
+    `;
+    
+    notification.innerHTML = `
+        <div style="font-size: 2rem; margin-bottom: 10px;">🎲</div>
+        <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 8px;">Recette sélectionnée !</div>
+        <div style="font-size: 1.4rem; margin-bottom: 5px;">${recipe.name}</div>
+        <div style="font-size: 0.9rem; opacity: 0.9;">${recipe.category} • ${recipe.time} • ${recipe.difficulty}</div>
+        <div style="font-size: 0.8rem; margin-top: 10px; opacity: 0.8;">Redirection en cours...</div>
+    `;
+    
+    // Ajout de l'animation CSS
+    if (!document.querySelector('#notification-animations')) {
+        const style = document.createElement('style');
+        style.id = 'notification-animations';
+        style.textContent = `
+            @keyframes fadeInScale {
+                from { 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%) scale(0.8); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translate(-50%, -50%) scale(1); 
+                }
+            }
+            @keyframes fadeOutScale {
+                from { 
+                    opacity: 1; 
+                    transform: translate(-50%, -50%) scale(1); 
+                }
+                to { 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%) scale(0.8); 
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Suppression automatique
+    setTimeout(() => {
+        notification.style.animation = 'fadeOutScale 0.3s ease';
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 1800);
 }
 
 // Ajouter l'initialisation du footer au chargement de la page

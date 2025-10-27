@@ -74,7 +74,15 @@
 .site-name {
     font-size: 28px;
     font-weight: 700;
+<<<<<<< HEAD
+<<<<<<< HEAD
     color: #ff6b35;
+=======
+    color: var(--text-primary, #2d3436);
+>>>>>>> a34724a (Ajout du dossier ajax avec images et mise à jour complète d'index.html avec sections recettes et filtres)
+=======
+    color: #ff6b35;
+>>>>>>> 4228694 (Ajout de tous les fichiers CSS, JS, HTML et AJAX mis à jour - Version complète du projet)
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
@@ -134,6 +142,14 @@
     background: linear-gradient(135deg, #ff6b35, #f7931e);
     color: white;
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+<<<<<<< HEAD
+<<<<<<< HEAD
+    transform: translateY(-1px);
+    font-weight: 700;
+=======
+>>>>>>> a34724a (Ajout du dossier ajax avec images et mise à jour complète d'index.html avec sections recettes et filtres)
+=======
+>>>>>>> 4228694 (Ajout de tous les fichiers CSS, JS, HTML et AJAX mis à jour - Version complète du projet)
 }
 
 .nav-link.active::after {
@@ -210,6 +226,10 @@
     position: relative;
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4228694 (Ajout de tous les fichiers CSS, JS, HTML et AJAX mis à jour - Version complète du projet)
 /* Styles pour les boutons favoris */
 .recipe-card {
     position: relative;
@@ -273,6 +293,11 @@
     animation: heartBeat 1s ease-in-out;
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> a34724a (Ajout du dossier ajax avec images et mise à jour complète d'index.html avec sections recettes et filtres)
+=======
+>>>>>>> 4228694 (Ajout de tous les fichiers CSS, JS, HTML et AJAX mis à jour - Version complète du projet)
 /* Variables CSS pour le thème sombre */
 .dark-theme {
     --header-bg: #2d3436;
@@ -283,6 +308,10 @@
     --active-bg: rgba(255, 255, 255, 0.15);
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4228694 (Ajout de tous les fichiers CSS, JS, HTML et AJAX mis à jour - Version complète du projet)
 body.dark-theme {
     --header-bg: #2d3436;
     --text-primary: #ffffff;
@@ -292,6 +321,11 @@ body.dark-theme {
     --active-bg: rgba(255, 255, 255, 0.15);
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> a34724a (Ajout du dossier ajax avec images et mise à jour complète d'index.html avec sections recettes et filtres)
+=======
+>>>>>>> 4228694 (Ajout de tous les fichiers CSS, JS, HTML et AJAX mis à jour - Version complète du projet)
 /* Responsive design */
 @media (max-width: 768px) {
     .header-container {

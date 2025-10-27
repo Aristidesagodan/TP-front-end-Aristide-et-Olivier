@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GourmeTech - Plateforme de recettes culinaires</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="navigation-styles.css">
+    <link rel="stylesheet" href="nav-styles.css">
 </head>
 <body>
     <header class="header">
@@ -21,10 +21,12 @@
             <!-- Navigation principale -->
             <nav class="main-nav">
                 <ul class="nav-list">
-                    <li><a href="#accueil" class="nav-link" style="--i:1">Accueil</a></li>
+                    <li><a href="#accueil" class="nav-link nav-active" style="--i:1">Accueil</a></li>
                     <li><a href="#recettes" class="nav-link" style="--i:2">Recettes</a></li>
-                    <li><a href="#favoris" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
-                    <li><a href="#contact" class="nav-link" style="--i:4">Contact</a></li>
+                    <li><a href="favoris.html" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
+                    <li><a href="ajouter-recette.html" class="nav-link" style="--i:4">Ajouter</a></li>
+                    <li><a href="recettes-aleatoires.html" class="nav-link" style="--i:5">Aléatoires</a></li>
+                    <li><a href="à-propos.html" class="nav-link" style="--i:6">À propos</a></li>
                 </ul>
             </nav>
 
@@ -40,7 +42,7 @@
     </header>
 
     <!-- Section héro avec recherche -->
-    <section class="hero-section">
+    <section id="accueil" class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">Découvrez des Recettes Délicieuses</h1>
@@ -154,7 +156,7 @@
                     </button>
                     <a href="soupe-potiron.html" class="recipe-card-link" aria-label="Soupe de potiron, 40 minutes, Moyen">
                         <figure class="recipe-media">
-                            <img class="recipe-image" src="ajax/veloute-potimarron.jpg" alt="Soupe de potiron" loading="lazy" width="320" height="200">
+                            <img class="recipe-image" src="ajax/velouté-potiron.jpeg" alt="Soupe de potiron" loading="lazy" width="320" height="200">
                         </figure>
                         <div class="recipe-content">
                             <h3 class="recipe-title">Soupe de potiron</h3>
@@ -173,7 +175,7 @@
                     </button>
                     <a href="ratatouille.html" class="recipe-card-link" aria-label="Ratatouille, 50 minutes, Moyen">
                         <figure class="recipe-media">
-                            <img class="recipe-image" src="ajax/la-vraie-ratatouille-nicoise.jpg" alt="Ratatouille" loading="lazy" width="320" height="200">
+                            <img class="recipe-image" src="ajax/la-vraie-ratatouille-nicoise.jpeg" alt="Ratatouille" loading="lazy" width="320" height="200">
                         </figure>
                         <div class="recipe-content">
                             <h3 class="recipe-title">Ratatouille</h3>
@@ -192,7 +194,7 @@
                     </button>
                     <a href="tarte-pommes.html" class="recipe-card-link" aria-label="Tarte aux pommes, 50 minutes, Facile">
                         <figure class="recipe-media">
-                            <img class="recipe-image" src="ajax/tarte_aux_pommes.jpg" alt="Tarte aux pommes" loading="lazy" width="320" height="200">
+                            <img class="recipe-image" src="ajax/Tarte-aux-pommes.jpg" alt="Tarte aux pommes" loading="lazy" width="320" height="200">
                         </figure>
                         <div class="recipe-content">
                             <h3 class="recipe-title">Tarte aux pommes</h3>
@@ -209,6 +211,7 @@
     </main>
     <script src="navigation.js"></script>
     <script src="script.js"></script>
+    <script src="advanced-features.js"></script>
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -228,5 +231,9 @@
             <p class="copyright">© 2025 GourmeTech - Tous droits réservés</p>
         </div>
     </footer>
+<<<<<<< HEAD
 </body>
 </html>
+=======
+</html>
+>>>>>>> 343e3f01d755893549dd7284c711acfcc5636281
