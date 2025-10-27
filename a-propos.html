@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez GourmeTech, le site qui mêle passion de la cuisine et technologie. Partagez vos recettes et enregistrez vos favoris.">
+  <title>À propos - GourmeTech</title>
+  <link rel="stylesheet" href="a-propos.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <a href="index.html" class="logo">
+        <div class="logo-section">
+          <div id="accueil" class="logo">
+            <span class="logo-letter">G</span>
+          </div>
+          <h1 class="site-name">GourmeTech</h1>
+        </div>
+      </a>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="recette.html">Ajouter une recette</a>
+        <a href="favoris.html">Mes favoris</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenu">
+    <!-- SECTION 1 : Informations sur le site -->
+    <section class="presentation fade-in">
+      <h1>À propos de GourmeTech</h1>
+      <p>
+        GourmeTech est un site imaginé pour les passionnés de cuisine et de technologie.  
+        Il permet de découvrir, sauvegarder et partager des recettes de manière simple et agréable.
+      </p>
+      <p>
+        Ce projet a été créé dans un but d’apprentissage : mise en pratique du HTML, CSS et JavaScript pur, sans framework.
+      </p>
+    </section>
+
+    <!-- SECTION 2 : Formulaire de contact -->
+    <section class="contact fade-in">
+      <h2>Contactez-nous</h2>
+      <form id="form-contact">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" placeholder="Votre nom complet" required>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" placeholder="exemple@email.com" required>
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+
+        <button type="submit" class="btn-envoyer">Envoyer</button>
+
+        <p id="confirmation" class="confirmation" style="display:none;">
+          ✅ Merci ! Votre message a bien été envoyé.
+        </p>
+      </form>
+    </section>
+
+    <!-- SECTION 3 : FAQ -->
+    <section class="faq fade-in">
+      <h2>Foire Aux Questions</h2>
+
+      <details>
+        <summary>Comment ajouter une recette ?</summary>
+        <p>Il suffit d’utiliser le bouton “Ajouter une recette” dans le menu principal 
+        et de remplir le formulaire correspondant.</p>
+      </details>
+
+      <details>
+        <summary>Où sont enregistrés mes favoris ?</summary>
+        <p>Vos recettes favorites sont sauvegardées dans votre navigateur grâce au <strong>localStorage</strong>. 
+        Elles ne sont donc visibles que sur cet appareil.</p>
+      </details>
+
+      <details>
+        <summary>Puis-je supprimer mes favoris ?</summary>
+        <p>Oui, vous pouvez supprimer n’importe quelle recette depuis la page “Mes favoris”.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+            
+            <div>
+                <h2>Navigation</h2>
+                <a href="index.html">Accueil</a>
+                <a href="recette.html">Ajouter une recette</a>
+                <a href="favoris.html">Mes favoris</a>
+                
+            </div>
+            <div>
+                <h2>À propos de GourmeTech</h2>
+                <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d’un projet pédagogique.</p>
+            </div>
+        
+    </div>
+    <p>© 2025 GourmeTech - Tous droits réservés | <a class="ml" href="#">Mentions légales</a></p>
+  </footer>
+
+</body>
+<script src="a-propos.js"></script>
+</html>
+    
+      
+      
+      
+      
+      
+
+    
+
+
