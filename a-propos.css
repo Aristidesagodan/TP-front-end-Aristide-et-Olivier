@@ -14,41 +14,35 @@ body {
 
 /* ====== HEADER ====== */
 header {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
 }
-
 .logo-section {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 .logo{
     text-decoration: none;
 }
-
 .logo-letter {
-  background-color: #ff6600;
+  background-color: #FF6600;
   color: #fff;
   font-weight: bold;
   font-size: 1.5rem;
   border-radius: 50%;
   padding: 10px 14px;
 }
-
 .site-name {
   font-size: 1.5rem;
-  color: #ff6f3c;
+  color: #FF6F3C;
 }
-
 nav a {
   margin-left: 1.5rem;
   text-decoration: none;
@@ -56,9 +50,8 @@ nav a {
   font-weight: 500;
   transition: color 0.3s;
 }
-
 nav a:hover {
-  color: #ff6600;
+  color: #FF6600;
 }
 
 /* ====== CONTENU PRINCIPAL ====== */
