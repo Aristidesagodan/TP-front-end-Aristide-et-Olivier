@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soupe de Potiron - GourmeTech</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav-styles.css">
+    <link rel="stylesheet" href="recipe-template.css">
+    <script>
+        // Initialisation rapide du thème pour éviter le flash
+        (function() {
+            const savedTheme = localStorage.getItem('gourmetech-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo et nom du site -->
+            <div class="logo-section">
+                <div class="logo">
+                    <span class="logo-letter">G</span>
+                </div>
+                <h1 class="site-name">GourmeTech</h1>
+            </div>
+
+            <!-- Navigation principale -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                      <li><a href="index.html" class="nav-link nav-active" style="--i:1">Accueil</a></li>
+                    <li><a href="index.html#recettes" class="nav-link active" style="--i:2">Recettes</a></li>
+                    <li><a href="favoris.html" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
+                    <li><a href="ajouter-recette.html" class="nav-link" style="--i:4">Ajouter</a></li>
+                    <li><a href="generer.html" class="nav-link" style="--i:5">Aléatoires</a></li>
+                    <li><a href="à-propos.html" class="nav-link" style="--i:6">À propos</a></li>
+                </ul>
+            </nav>
+
+            <!-- Boutons d'action -->
+            <div class="header-actions">
+                <!-- Bouton changement de thème -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="recipe-detail">
+        <div class="recipe-container">
+            <!-- En-tête de la recette -->
+            <header class="recipe-header">
+                <div class="recipe-hero">
+                    <img src="ajax/velouté-potiron.jpeg" alt="Soupe de potiron" class="recipe-hero-image">
+                    <button class="favorite-btn favorite-btn-large" aria-label="Ajouter aux favoris" data-recipe="soupe-potiron">
+                        <span class="heart-icon">🤍</span>
+                    </button>
+                </div>
+                <div class="recipe-info">
+                    <h1 class="recipe-title">Soupe de Potiron</h1>
+                    <p class="recipe-description">Une délicieuse soupe onctueuse et réconfortante, parfaite pour les soirées d'automne. Le potiron apporte une douceur naturelle et une belle couleur orangée.</p>
+                    
+                    <div class="recipe-stats">
+                        <div class="stat-item">
+                            <span class="stat-icon">⏱️</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Temps de préparation</span>
+                                <span class="stat-value">40 minutes</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">💡</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Difficulté</span>
+                                <span class="stat-value">Moyen</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">👥</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Portions</span>
+                                <span class="stat-value">4 personnes</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🥗</span>
+                            <div class="stat-content">
+                                <span class="stat-label">Catégorie</span>
+                                <span class="stat-value">Entrée</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenu de la recette -->
+            <div class="recipe-content">
+                <!-- Ingrédients -->
+                <section class="recipe-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🛒</span>
+                        Ingrédients
+                    </h2>
+                    <ul class="ingredients-list">
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">1 kg</span>
+                            <span class="ingredient-name">de potiron (ou potimarron)</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2</span>
+                            <span class="ingredient-name">oignons moyens</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2 gousses</span>
+                            <span class="ingredient-name">d'ail</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">1 litre</span>
+                            <span class="ingredient-name">de bouillon de légumes</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">200 ml</span>
+                            <span class="ingredient-name">de crème fraîche</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">2 cuillères à soupe</span>
+                            <span class="ingredient-name">d'huile d'olive</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">1 pincée</span>
+                            <span class="ingredient-name">de muscade</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">Sel et poivre</span>
+                            <span class="ingredient-name">selon le goût</span>
+                        </li>
+                        <li class="ingredient-item">
+                            <span class="ingredient-quantity">Graines de courge</span>
+                            <span class="ingredient-name">pour la décoration (optionnel)</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Instructions -->
+                <section class="recipe-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">👨‍🍳</span>
+                        Instructions
+                    </h2>
+                    <ol class="instructions-list">
+                        <li class="instruction-step">
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <h3>Préparation du potiron</h3>
+                                <p>Épluchez et coupez le potiron en cubes d'environ 2 cm. Retirez les graines (gardez-les pour la décoration si souhaité).</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <h3>Préparation des aromatics</h3>
+                                <p>Épluchez et émincez finement les oignons. Épluchez et hachez l'ail.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <h3>Cuisson de base</h3>
+                                <p>Dans une grande casserole, faites chauffer l'huile d'olive à feu moyen. Ajoutez les oignons et faites-les revenir 5 minutes jusqu'à ce qu'ils soient translucides.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">4</span>
+                            <div class="step-content">
+                                <h3>Ajout de l'ail et du potiron</h3>
+                                <p>Ajoutez l'ail et faites revenir 1 minute. Incorporez les cubes de potiron et mélangez bien.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">5</span>
+                            <div class="step-content">
+                                <h3>Mijotage</h3>
+                                <p>Versez le bouillon de légumes, portez à ébullition puis réduisez le feu et laissez mijoter 25-30 minutes jusqu'à ce que le potiron soit très tendre.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">6</span>
+                            <div class="step-content">
+                                <h3>Mixage</h3>
+                                <p>Retirez du feu et mixez la soupe à l'aide d'un mixeur plongeant jusqu'à obtenir une texture lisse et onctueuse.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">7</span>
+                            <div class="step-content">
+                                <h3>Finition</h3>
+                                <p>Incorporez la crème fraîche, ajoutez la muscade, salez et poivrez selon votre goût. Réchauffez doucement si nécessaire.</p>
+                            </div>
+                        </li>
+                        <li class="instruction-step">
+                            <span class="step-number">8</span>
+                            <div class="step-content">
+                                <h3>Service</h3>
+                                <p>Servez bien chaud dans des bols, décorez avec quelques graines de courge grillées et un trait de crème fraîche si désiré.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- Conseils -->
+                <section class="recipe-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">💡</span>
+                        Conseils du Chef
+                    </h2>
+                    <div class="tips-container">
+                        <div class="tip-item">
+                            <h4>Choix du potiron</h4>
+                            <p>Privilégiez le potimarron pour sa chair plus sucrée et sa facilité de préparation (pas besoin d'éplucher).</p>
+                        </div>
+                        <div class="tip-item">
+                            <h4>Conservation</h4>
+                            <p>Cette soupe se conserve 3 jours au réfrigérateur et peut être congelée jusqu'à 3 mois.</p>
+                        </div>
+                        <div class="tip-item">
+                            <h4>Variantes</h4>
+                            <p>Ajoutez du gingembre frais râpé ou du curry pour une version plus épicée.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Navigation entre recettes -->
+            <nav class="recipe-navigation">
+                <a href="ratatouille.html" class="nav-recipe">
+                    <span class="nav-direction">Recette suivante</span>
+                    <span class="nav-title">Ratatouille</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <script src="navigation.js"></script>
+    <script src="script.js"></script>
+    <script src="advanced-features.js"></script>
+    <script>
+        // Initialisation spécifique de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialisation du thème
+            initializeTheme();
+        });
+    </script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h2>Navigation</h2>
+                    <a href="index.html">Accueil</a>
+                    <a href="#recette">Ajouter une recette</a>
+                    <a href="#favoris">Mes favoris</a>
+                    <a href="#apropos">À propos</a>
+                </div>
+                <div class="footer-section">
+                    <h2>À propos de GourmeTech</h2>
+                    <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d'un projet pédagogique. Découvrez, partagez et savourez les meilleures recettes.</p>
+                </div>
+            </div>
+            <p class="copyright">© 2025 GourmeTech - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>

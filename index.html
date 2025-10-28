@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GourmeTech - Plateforme de recettes culinaires</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav-styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo et nom du site -->
+            <div class="logo-section">
+                <div class="logo">
+                    <span class="logo-letter">G</span>
+                </div>
+                <h1 class="site-name">GourmeTech</h1>
+            </div>
+
+            <!-- Navigation principale -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link nav-active" style="--i:1">Accueil</a></li>
+                    <li><a href="#recettes" class="nav-link" style="--i:2">Recettes</a></li>
+                    <li><a href="favoris.html" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
+                    <li><a href="ajouter-recette.html" class="nav-link" style="--i:4">Ajouter</a></li>
+                    <li><a href="generer.html" class="nav-link" style="--i:5">Aléatoires</a></li>
+                    <li><a href="à-propos.html" class="nav-link" style="--i:6">À propos</a></li>
+                </ul>
+            </nav>
+
+            <!-- Boutons d'action -->
+            <div class="header-actions">
+                <!-- Bouton changement de thème -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                
+                           </div>
+        </div>
+    </header>
+
+    <!-- Section héro avec recherche -->
+    <section id="accueil" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Découvrez des Recettes Délicieuses</h1>
+                <p class="hero-description">Explorez notre collection de recettes savoureuses et trouvez l'inspiration pour vos prochains repas</p>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Rechercher une recette..." aria-label="Rechercher une recette">
+                        <button class="search-btn" aria-label="Lancer la recherche">
+                            <span class="search-icon">🔍</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section des filtres -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <h2 class="filters-title">Filtrer les recettes</h2>
+            
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <h3 class="filter-title">
+                        <span class="filter-icon">🏷️</span>
+                        Catégorie
+                    </h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="entree" id="entree">
+                            <span class="checkbox-custom"></span>
+                            <span class="option-text">Entrée</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="plat" id="plat">
+                            <span class="checkbox-custom"></span>
+                            <span class="option-text">Plat</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="dessert" id="dessert">
+                            <span class="checkbox-custom"></span>
+                            <span class="option-text">Dessert</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">
+                        <span class="filter-icon">⏱️</span>
+                        Temps de préparation
+                    </h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="radio" name="temps" value="rapide" id="rapide">
+                            <span class="radio-custom"></span>
+                            <span class="option-text">Rapide (&lt; 30 min)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="temps" value="moyen" id="moyen-temps">
+                            <span class="radio-custom"></span>
+                            <span class="option-text">Moyen (30-60 min)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="temps" value="long" id="long">
+                            <span class="radio-custom"></span>
+                            <span class="option-text">Long (&gt; 60 min)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">
+                        <span class="filter-icon">💡</span>
+                        Difficulté
+                    </h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="radio" name="difficulte" value="facile" id="facile">
+                            <span class="radio-custom"></span>
+                            <span class="option-text">Facile</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="difficulte" value="moyen" id="moyen-diff">
+                            <span class="radio-custom"></span>
+                            <span class="option-text">Moyen</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="difficulte" value="difficile" id="difficile">
+                            <span class="radio-custom"></span>
+                            <span class="option-text">Difficile</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section des recettes -->
+    <main class="recipes-section" id="recettes" aria-labelledby="recettes-title">
+        <div class="recipes-container">
+            <header class="recipes-header">
+                <h2 id="recettes-title" class="recipes-title">Nos Recettes</h2>
+                <p class="recipes-subtitle">Découvrez notre sélection de recettes savoureuses</p>
+            </header>
+
+            <div class="recipes-grid" role="list" aria-label="Liste des recettes">
+                <article class="recipe-card" role="listitem" data-category="entree" data-time="moyen" data-difficulty="moyen">
+                    <button class="favorite-btn" aria-label="Ajouter aux favoris" data-recipe="soupe-potiron">
+                        <span class="heart-icon">🤍</span>
+                    </button>
+                    <a href="soupe-potiron.html" class="recipe-card-link" aria-label="Soupe de potiron, 40 minutes, Moyen">
+                        <figure class="recipe-media">
+                            <img class="recipe-image" src="ajax/velouté-potiron.jpeg" alt="Soupe de potiron" loading="lazy" width="320" height="200">
+                        </figure>
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Soupe de potiron</h3>
+                            <ul class="recipe-meta">
+                                <li class="meta-time">⏱️ <time datetime="PT40M">40 min</time></li>
+                                <li class="meta-level">💡 Moyen</li>
+                                <li class="meta-category">🥗 Entrée</li>
+                            </ul>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="recipe-card" role="listitem" data-category="plat" data-time="moyen" data-difficulty="moyen">
+                    <button class="favorite-btn" aria-label="Ajouter aux favoris" data-recipe="ratatouille">
+                        <span class="heart-icon">🤍</span>
+                    </button>
+                    <a href="ratatouille.html" class="recipe-card-link" aria-label="Ratatouille, 50 minutes, Moyen">
+                        <figure class="recipe-media">
+                            <img class="recipe-image" src="ajax/la-vraie-ratatouille-nicoise.jpeg" alt="Ratatouille" loading="lazy" width="320" height="200">
+                        </figure>
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Ratatouille</h3>
+                            <ul class="recipe-meta">
+                                <li class="meta-time">⏱️ <time datetime="PT50M">50 min</time></li>
+                                <li class="meta-level">💡 Moyen</li>
+                                <li class="meta-category">🍽️ Plat</li>
+                            </ul>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="recipe-card" role="listitem" data-category="dessert" data-time="moyen" data-difficulty="facile">
+                    <button class="favorite-btn" aria-label="Ajouter aux favoris" data-recipe="tarte-pommes">
+                        <span class="heart-icon">🤍</span>
+                    </button>
+                    <a href="tarte-pommes.html" class="recipe-card-link" aria-label="Tarte aux pommes, 50 minutes, Facile">
+                        <figure class="recipe-media">
+                            <img class="recipe-image" src="ajax/Tarte-aux-pommes.jpg" alt="Tarte aux pommes" loading="lazy" width="320" height="200">
+                        </figure>
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Tarte aux pommes</h3>
+                            <ul class="recipe-meta">
+                                <li class="meta-time">⏱️ <time datetime="PT50M">50 min</time></li>
+                                <li class="meta-level">💡 Facile</li>
+                                <li class="meta-category">🍰 Dessert</li>
+                            </ul>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </main>
+    <script src="navigation.js"></script>
+    <script src="script.js"></script>
+    <script src="advanced-features.js"></script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h2>Navigation</h2>
+                    <a href="index.html">Accueil</a>
+                    <a href="#recette">Ajouter une recette</a>
+                    <a href="#favoris">Mes favoris</a>
+                    <a href="#apropos">À propos</a>
+                </div>
+                <div class="footer-section">
+                    <h2>À propos de GourmeTech</h2>
+                    <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d'un projet pédagogique. Découvrez, partagez et savourez les meilleures recettes.</p>
+                </div>
+            </div>
+            <p class="copyright">© 2025 GourmeTech - Tous droits réservés</p>
+        </div>
+    </footer>
+<<<<<<< HEAD
+</body>
+    
+</html>
+=======
+</html>
+>>>>>>> 343e3f01d755893549dd7284c711acfcc5636281

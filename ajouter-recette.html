@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une recette - GourmeTech</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav-styles.css">
+    <style>
+        .add-recipe-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 20px 40px;
+        }
+        
+        .add-recipe-container h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color, #ff6b35);
+            font-size: 2.5rem;
+        }
+        
+        .recipe-form {
+            background: var(--card-background, #ffffff);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary, #333);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--input-background, #ffffff);
+            color: var(--text-primary, #333);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color, #ff6b35);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .ingredients-section,
+        .instructions-section {
+            margin-top: 30px;
+        }
+        
+        .ingredient-item,
+        .instruction-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .ingredient-item input,
+        .instruction-item textarea {
+            flex: 1;
+        }
+        
+        .instruction-item textarea {
+            min-height: 60px;
+        }
+        
+        .btn-remove {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-remove:hover {
+            background: #c0392b;
+        }
+        
+        .btn-add {
+            background: var(--primary-color, #ff6b35);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-add:hover {
+            background: var(--primary-dark, #e55a2f);
+        }
+        
+        .submit-btn {
+            background: var(--primary-color, #ff6b35);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 30px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: var(--primary-dark, #e55a2f);
+        }
+        
+        .form-help {
+            font-size: 0.9rem;
+            color: var(--text-secondary, #666);
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .add-recipe-container {
+                padding: 100px 15px 30px;
+            }
+            
+            .recipe-form {
+                padding: 25px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo et nom du site -->
+            <div class="logo-section">
+                <div class="logo">
+                    <span class="logo-letter">G</span>
+                </div>
+                <h1 class="site-name">GourmeTech</h1>
+            </div>
+
+            <!-- Navigation principale -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link nav-active" style="--i:1">Accueil</a></li>
+                    <li><a href="index.html#recettes" class="nav-link active" style="--i:2">Recettes</a></li>
+                    <li><a href="favoris.html" class="nav-link" style="--i:3" aria-label="Mes favoris">Favoris</a></li>
+                    <li><a href="ajouter-recette.html" class="nav-link" style="--i:4">Ajouter</a></li>
+                    <li><a href="generer.html" class="nav-link" style="--i:5">Aléatoires</a></li>
+                    <li><a href="à-propos.html" class="nav-link" style="--i:6">À propos</a></li>
+                </ul>
+            </nav>
+
+            <!-- Boutons d'action -->
+            <div class="header-actions">
+                <!-- Bouton changement de thème -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="add-recipe-container">
+        <h1>Ajouter une nouvelle recette</h1>
+
+        <form class="recipe-form" id="recipeForm">
+            <!-- Informations de base -->
+            <div class="form-group">
+                <label for="recipeName">Nom de la recette *</label>
+                <input type="text" id="recipeName" name="recipeName" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Catégorie *</label>
+                    <select id="category" name="category" required>
+                        <option value="">Choisir une catégorie</option>
+                        <option value="entree">Entrée</option>
+                        <option value="plat">Plat principal</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="boisson">Boisson</option>
+                        <option value="apero">Apéritif</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="difficulty">Difficulté *</label>
+                    <select id="difficulty" name="difficulty" required>
+                        <option value="">Choisir la difficulté</option>
+                        <option value="facile">Facile</option>
+                        <option value="moyen">Moyen</option>
+                        <option value="difficile">Difficile</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prepTime">Temps de préparation (min) *</label>
+                    <input type="number" id="prepTime" name="prepTime" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cookTime">Temps de cuisson (min)</label>
+                    <input type="number" id="cookTime" name="cookTime" min="0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="servings">Nombre de portions *</label>
+                <input type="number" id="servings" name="servings" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description de la recette</label>
+                <textarea id="description" name="description" placeholder="Décrivez votre recette en quelques mots..."></textarea>
+                <div class="form-help">Une courte description qui donnera envie de tester votre recette</div>
+            </div>
+
+            <!-- Ingrédients -->
+            <div class="ingredients-section">
+                <h3>Ingrédients *</h3>
+                <div id="ingredientsList">
+                    <div class="ingredient-item">
+                        <input type="text" placeholder="ex: 200g de farine" required>
+                        <button type="button" class="btn-remove" onclick="removeIngredient(this)">✖</button>
+                    </div>
+                </div>
+                <button type="button" class="btn-add" onclick="addIngredient()">+ Ajouter un ingrédient</button>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions-section">
+                <h3>Instructions de préparation *</h3>
+                <div id="instructionsList">
+                    <div class="instruction-item">
+                        <span style="font-weight: bold; margin-right: 10px;">1.</span>
+                        <textarea placeholder="Décrivez cette étape de préparation..." required></textarea>
+                        <button type="button" class="btn-remove" onclick="removeInstruction(this)">✖</button>
+                    </div>
+                </div>
+                <button type="button" class="btn-add" onclick="addInstruction()">+ Ajouter une étape</button>
+            </div>
+
+            <button type="submit" class="submit-btn">Publier la recette</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h2>Navigation</h2>
+                    <a href="index.html">Accueil</a>
+                    <a href="index.html#recettes">Recettes</a>
+                    <a href="favoris.html">Mes favoris</a>
+                    <a href="ajouter-recette.html">Ajouter une recette</a>
+                </div>
+                <div class="footer-section">
+                    <h2>À propos de GourmeTech</h2>
+                    <p>GourmeTech est une plateforme de recettes culinaires interactive développée dans le cadre d'un projet pédagogique. Découvrez, partagez et savourez les meilleures recettes.</p>
+                </div>
+            </div>
+            <p class="copyright">© 2025 GourmeTech - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script src="navigation.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let ingredientCount = 1;
+        let instructionCount = 1;
+
+        function addIngredient() {
+            ingredientCount++;
+            const ingredientsList = document.getElementById('ingredientsList');
+            const newIngredient = document.createElement('div');
+            newIngredient.className = 'ingredient-item';
+            newIngredient.innerHTML = `
+                <input type="text" placeholder="ex: 200g de farine" required>
+                <button type="button" class="btn-remove" onclick="removeIngredient(this)">✖</button>
+            `;
+            ingredientsList.appendChild(newIngredient);
+        }
+
+        function removeIngredient(button) {
+            const ingredientsList = document.getElementById('ingredientsList');
+            if (ingredientsList.children.length > 1) {
+                button.parentElement.remove();
+                ingredientCount--;
+            } else {
+                showNotification('Il faut au moins un ingrédient', 'info');
+            }
+        }
+
+        function addInstruction() {
+            instructionCount++;
+            const instructionsList = document.getElementById('instructionsList');
+            const newInstruction = document.createElement('div');
+            newInstruction.className = 'instruction-item';
+            newInstruction.innerHTML = `
+                <span style="font-weight: bold; margin-right: 10px;">${instructionCount}.</span>
+                <textarea placeholder="Décrivez cette étape de préparation..." required></textarea>
+                <button type="button" class="btn-remove" onclick="removeInstruction(this)">✖</button>
+            `;
+            instructionsList.appendChild(newInstruction);
+        }
+
+        function removeInstruction(button) {
+            const instructionsList = document.getElementById('instructionsList');
+            if (instructionsList.children.length > 1) {
+                button.parentElement.remove();
+                instructionCount--;
+                // Renuméroter les instructions
+                renumberInstructions();
+            } else {
+                showNotification('Il faut au moins une instruction', 'info');
+            }
+        }
+
+        function renumberInstructions() {
+            const instructions = document.querySelectorAll('.instruction-item span');
+            instructions.forEach((span, index) => {
+                span.textContent = `${index + 1}.`;
+            });
+            instructionCount = instructions.length;
+        }
+
+        document.getElementById('recipeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collecte des données du formulaire
+            const formData = new FormData(this);
+            const recipeData = {
+                name: formData.get('recipeName'),
+                category: formData.get('category'),
+                difficulty: formData.get('difficulty'),
+                prepTime: formData.get('prepTime'),
+                cookTime: formData.get('cookTime') || 0,
+                servings: formData.get('servings'),
+                description: formData.get('description'),
+                ingredients: [],
+                instructions: []
+            };
+
+            // Collecte des ingrédients
+            const ingredientInputs = document.querySelectorAll('.ingredient-item input');
+            ingredientInputs.forEach(input => {
+                if (input.value.trim()) {
+                    recipeData.ingredients.push(input.value.trim());
+                }
+            });
+
+            // Collecte des instructions
+            const instructionInputs = document.querySelectorAll('.instruction-item textarea');
+            instructionInputs.forEach(textarea => {
+                if (textarea.value.trim()) {
+                    recipeData.instructions.push(textarea.value.trim());
+                }
+            });
+
+            // Validation
+            if (recipeData.ingredients.length === 0) {
+                showNotification('Veuillez ajouter au moins un ingrédient', 'info');
+                return;
+            }
+
+            if (recipeData.instructions.length === 0) {
+                showNotification('Veuillez ajouter au moins une instruction', 'info');
+                return;
+            }
+
+            // Simulation de sauvegarde
+            console.log('Données de la recette:', recipeData);
+            
+            // Sauvegarde locale (simulation)
+            const savedRecipes = JSON.parse(localStorage.getItem('gourmetech-user-recipes') || '[]');
+            recipeData.id = 'user-recipe-' + Date.now();
+            recipeData.dateCreated = new Date().toISOString();
+            savedRecipes.push(recipeData);
+            localStorage.setItem('gourmetech-user-recipes', JSON.stringify(savedRecipes));
+
+            showNotification('Recette ajoutée avec succès !', 'success');
+            
+            // Redirection après 2 secondes
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        });
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#27ae60' : type === 'info' ? '#3498db' : '#e74c3c'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                z-index: 9999;
+                font-weight: 500;
+                transform: translateX(300px);
+                transition: transform 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(300px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialisation du thème
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+        });
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('gourmetech-theme');
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                if (themeIcon) {
+                    themeIcon.textContent = '☀️';
+                }
+            }
+            
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    const isDark = document.body.classList.contains('dark-theme');
+                    localStorage.setItem('gourmetech-theme', isDark ? 'dark' : 'light');
+                    
+                    if (themeIcon) {
+                        themeIcon.textContent = isDark ? '☀️' : '🌙';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
