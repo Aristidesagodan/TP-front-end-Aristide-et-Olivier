@@ -114,16 +114,7 @@ Chaque page de recette comprend :
 3. **Explorer** les recettes et fonctionnalités
 
 ### Serveur Local (Optionnel)
-```bash
-# Avec Python
-python -m http.server 8080
 
-# Avec Node.js
-npx http-server -p 8080
-
-# Avec PHP
-php -S localhost:8080
-```
 
 ## 🔧 Fonctionnalités JavaScript
 
@@ -205,21 +196,18 @@ php -S localhost:8080
 
 ### Fonctionnalités
 - [ ] Base de données pour plus de recettes
-- [ ] Système d'utilisateurs avec comptes
+      
 - [ ] Partage social des recettes
-- [ ] Commentaires et évaluations
-- [ ] Mode hors-ligne avec Service Workers
+      
+      
 
 ### Techniques
-- [ ] Framework JavaScript (React, Vue.js)
-- [ ] Backend avec API REST
-- [ ] Base de données (MongoDB, PostgreSQL)
-- [ ] Tests automatisés
-- [ ] Déploiement automatique
+API REST
+    
 
 ## 👥 Contributeurs
 
-- **Aristide** - Développement front-end
+- **Aristide** - Développement front-end et design
 - **Olivier** - Développement front-end et design
 
 ## 📄 Licence
@@ -230,7 +218,7 @@ Projet éducatif - Usage pédagogique uniquement
 
 Pour toute question concernant ce projet :
 - Repository GitHub : [TP-front-end-Aristide-et-Olivier](https://github.com/Aristidesagodan/TP-front-end-Aristide-et-Olivier)
-- Branche active : `olivier`
+- Branche active : `main`
 
 ---
 
